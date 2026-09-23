@@ -1,0 +1,1292 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Siha Maroc — Test médecin</title><style>
+:root{--p:#087f78;--p2:#0b9b91;--ink:#17313a;--muted:#6d7f84;--bg:#f5f9f8;--card:#fff;--line:#dfeae7;--danger:#b63c3c;--shadow:0 8px 28px rgba(20,65,62,.08)}*{box-sizing:border-box}body{margin:0;background:#dfe9e7;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink)}#app{max-width:430px;min-height:100vh;margin:auto;background:var(--bg);position:relative;padding-bottom:86px;box-shadow:0 0 40px rgba(0,0,0,.12)}header{padding:20px 18px 12px;background:linear-gradient(145deg,#fff,#edf8f6);position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line)}.brand{font-weight:850;letter-spacing:.4px;color:var(--p);font-size:20px}.hello{font-size:25px;font-weight:800;margin-top:13px}.sub{color:var(--muted);margin-top:4px;line-height:1.4}.search{margin-top:15px;background:white;border:1px solid var(--line);border-radius:15px;padding:13px 14px;color:#81908f;box-shadow:var(--shadow)}main{padding:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;min-height:135px;box-shadow:var(--shadow);cursor:pointer}.card:active{transform:scale(.985)}.icon{font-size:29px}.card h3{margin:10px 0 6px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.35}.wide{grid-column:1/-1;min-height:auto;display:flex;gap:12px;align-items:center}.wide .icon{font-size:26px}.section-title{font-weight:800;margin:20px 2px 10px}.orient{background:#e9f6f4;border:1px solid #cbe9e4;border-radius:16px;padding:15px;display:flex;gap:12px;cursor:pointer}.orient b{display:block}.orient span{color:var(--muted);font-size:13px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);height:72px;background:white;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);z-index:10;padding-bottom:env(safe-area-inset-bottom)}.nav{border:0;background:none;color:#778786;font-size:11px;padding:8px 2px}.nav i{display:block;font-style:normal;font-size:22px;margin-bottom:3px}.nav.active{color:var(--p);font-weight:700}.screen{display:none}.screen.active{display:block}.topbar{display:flex;align-items:center;gap:10px;margin-bottom:15px}.back{border:0;background:white;border-radius:12px;width:40px;height:40px;font-size:20px;box-shadow:var(--shadow)}h2{font-size:23px;margin:0}.choice{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;margin:10px 0;cursor:pointer;box-shadow:var(--shadow)}.choice b{display:block;margin-bottom:4px}.choice small{color:var(--muted)}.field{margin:13px 0}.field label{display:block;font-size:13px;font-weight:700;margin:0 0 7px}.field input,.field select,.field textarea{width:100%;padding:13px;border:1px solid #ccdcd8;border-radius:12px;background:#fff;font:inherit}.btn{width:100%;border:0;border-radius:14px;padding:14px;background:var(--p);color:white;font-weight:800;font-size:15px;margin-top:10px}.btn.secondary{background:#fff;color:var(--p);border:1px solid var(--p)}.notice{padding:12px;border-radius:13px;background:#fff7e7;color:#775a16;font-size:12.5px;line-height:1.4;margin:12px 0}.danger{background:#fff0f0;color:#8e3030}.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#e8f6f4;color:var(--p);font-size:11px;font-weight:700}.req{background:white;border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0}.req .row{display:flex;justify-content:space-between;gap:10px}.empty{text-align:center;color:var(--muted);padding:60px 20px}.profilebox{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:12px}.avatar{width:54px;height:54px;border-radius:50%;background:#d8efeb;display:grid;place-items:center;font-size:25px;margin-bottom:10px}.success{text-align:center;padding:45px 10px}.success .big{font-size:58px}.success h2{margin:12px}.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.tag{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 11px;font-size:12px;cursor:pointer}
+
+.doctor-filter{background:#fff;border:1px solid #e6ece9;border-radius:18px;padding:14px;margin:12px 0}
+.doctor-filter label{display:block;font-size:17px;font-weight:750;margin-bottom:10px}.doctor-filter select{width:100%;box-sizing:border-box;min-height:58px;padding:0 16px;border:1px solid #ccdcd8;border-radius:14px;background:#fff;font-size:18px;color:#17313a;-webkit-appearance:auto}.doctor-filter{padding:18px}
+.mapbox{height:190px;border-radius:18px;margin:12px 0;background:linear-gradient(135deg,#e7f3ee,#f7faf8);border:1px solid #d8e6df;position:relative;overflow:hidden}
+.mapbox:before{content:"Carte des médecins";position:absolute;top:12px;left:14px;font-weight:700;color:#31594b}
+.pin{position:absolute;font-size:26px}.pin.p1{left:20%;top:38%}.pin.p2{left:54%;top:55%}.pin.p3{left:73%;top:28%}
+.legend{font-size:12px;color:#667;margin-top:6px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:12px 0}
+.day{border:1px solid #dfe7e3;border-radius:12px;padding:9px 3px;text-align:center;background:#fff;font-size:12px}
+.day.available{background:#e7f7ed;border-color:#8bd0a4;cursor:pointer}.day.full{background:#fdecec;border-color:#e9a1a1;cursor:pointer}.day.muted{opacity:.35}
+.slotgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}.slot{border:1px solid #b9d7ca;border-radius:12px;padding:11px 5px;text-align:center;background:#fff;cursor:pointer}.slot.selected{outline:2px solid #2e7d5b;background:#eaf7f1}
+.status-note{padding:12px;border-radius:14px;background:#f5f7f6;font-size:13px;margin:10px 0}
+
+.info-card{background:#f7faf9!important;border:1px solid #e2ebe7!important;box-shadow:none!important;cursor:default!important}
+.action-card{background:#fff!important;border:2px solid #3b887f!important;box-shadow:0 6px 16px rgba(40,105,96,.10)!important;position:relative;padding-right:52px!important;cursor:pointer!important}
+.action-card:after{content:"›";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:36px;font-weight:600;color:#3b887f}
+.action-card b{color:#246f67}
+
+.access-card{background:#fff;border:1px solid #dfe9e5;border-radius:18px;padding:16px;margin:12px 0}
+.access-card.action{border:2px solid #3b887f;cursor:pointer;position:relative;padding-right:48px}
+.access-card.action:after{content:"›";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:32px;color:#3b887f}
+.guest-badge{display:inline-block;background:#eef5f2;color:#286f66;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700}
+
+.paramed-cal{background:#fff;border:1px solid #dfe9e5;border-radius:18px;padding:14px;margin:12px 0}
+.paramed-cal-title{font-size:20px;font-weight:800;margin:2px 0 12px}
+.paramed-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;width:100%}
+.paramed-cal-grid .dow{text-align:center;font-size:13px;font-weight:800;color:#6f8086;padding:4px 0}
+.paramed-cal-grid .pday{aspect-ratio:1/1;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;border:1px solid #dce7e3;background:#fff;box-sizing:border-box}
+.paramed-cal-grid .available{background:#e8f7ee;border:2px solid #48a568;color:#176b3c;cursor:pointer}
+.paramed-cal-grid .full{background:#fbeaea;border:2px solid #d45a5a;color:#a32d2d}
+.paramed-cal-grid .empty{border-color:transparent;background:transparent}
+@media(max-width:390px){.paramed-cal{padding:10px}.paramed-cal-grid{gap:5px}.paramed-cal-grid .pday{font-size:14px;border-radius:10px}}
+
+.multi-cal-nav{display:grid;grid-template-columns:46px 1fr 46px;align-items:center;gap:8px;margin:10px 0 8px}
+.multi-cal-nav button{height:44px;border:1px solid #dce7e3;border-radius:13px;background:#fff;font-size:25px;color:#327c73;padding:0}
+.multi-cal-title{text-align:center;font-size:22px;font-weight:800}
+.multi-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:58px;gap:7px;margin:10px 0 14px;align-items:stretch}
+.multi-calendar .mday{width:100%;height:58px;min-height:0;margin:0;padding:0;border-radius:14px;border:1px solid #dfe8e5;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:16px;line-height:1.05;box-sizing:border-box}
+.multi-calendar .dow{min-height:44px;color:#9aa7aa;font-weight:700}
+.multi-calendar .available{background:#eaf7ef;border:1.5px solid #65b37d;color:#245d38}
+.multi-calendar .full{background:#fceded;border:1.5px solid #df8a8a;color:#9c3333}
+.multi-calendar .empty{border-color:transparent;background:transparent}
+.multi-calendar .dot{font-size:17px;line-height:18px;margin-top:3px}
+.calendar-bottom-space{height:90px}
+@media(max-width:390px){.multi-calendar{grid-auto-rows:52px;gap:6px}.multi-calendar .mday{height:52px;font-size:15px;border-radius:12px}}
+</style>
+<style>.progrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.progrid button{min-height:110px;border:1px solid #d8e5e1;background:#fff;border-radius:15px;font-size:24px;color:#17313a}.progrid b,.progrid small{display:block}.progrid b{font-size:14px;margin:6px 0}.progrid small{font-size:11px;color:#718180}</style>
+<style>
+.multi-cal-nav .cal-nav-disabled{opacity:.22;pointer-events:none}
+.multi-calendar .past-day{visibility:hidden}
+</style>
+<style>
+body.pro-mode-active .bottomnav,body.pro-mode-active .bottom-nav,body.pro-mode-active nav.bottom{display:none!important}
+.pro-cal-nav{display:grid;grid-template-columns:64px 1fr 64px;align-items:center;gap:10px;margin:14px 0}
+.pro-cal-nav b{text-align:center;font-size:24px}.pro-cal-nav button{height:52px;border:1px solid #d4e2df;background:#fff;border-radius:14px;font-size:26px;color:#347f77}
+.pro-legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;color:#68797c;margin-bottom:12px}
+.pro-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.pro-dow{text-align:center;font-weight:700;color:#89989a;padding:8px 0}
+.pro-day{height:58px;border-radius:13px;background:#fff;border:1px solid #d7e4e1;font-size:16px}.pro-day b,.pro-day small{display:block}.pro-day small{font-size:13px;margin-top:3px}
+.popen{border-color:#76b98a;background:#f2faf4}.pfull{border-color:#df8b8b;background:#fff4f4}.pblocked{background:#f1f2f2}.pleave{border-color:#e2b36d;background:#fff8ed}
+.pro-slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.pro-time{min-height:62px;border:1px solid #a9d1c6;background:#fff;border-radius:13px;color:#26776e}.pro-time small{display:block;font-size:10px;margin-top:3px}.pro-time.closed{opacity:.38;text-decoration:line-through}.pro-time.booked{background:#f3f3f3;color:#777;border-color:#ccc}
+.pro-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:15px 0}.pro-actions button{padding:11px;border:1px solid #d3e0dd;border-radius:12px;background:#fff;font-weight:700}
+.pro-bottom{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid #dbe5e3;margin:28px -20px -20px;padding:9px 5px calc(9px + env(safe-area-inset-bottom));z-index:20}.pro-bottom button{border:0;background:none;font-size:20px;color:#778688}.pro-bottom small{display:block;font-size:10px;margin-top:3px}.pro-bottom .on{color:#2d8279;font-weight:800}
+</style>
+<style>
+.clinical-extra{display:none}.clinical-extra.show{display:block}
+.checkline{display:block;margin:12px 0}.checkline input{width:19px;height:19px;vertical-align:middle;margin-right:7px}
+.successbox{background:#effaf6;border:1px solid #bfe2d6;border-radius:16px;padding:18px;margin:14px 0}
+</style>
+<style>#home,#requests,#record,#profile,#flow,.bottomnav,.bottom-nav,nav.bottom{display:none!important}
+#doctorPro{display:block!important}.remote-test-banner{background:#eaf7f4;border:1px solid #c7e4dd;border-radius:14px;padding:12px 14px;margin:8px 0 14px;font-size:13px;color:#426c67}</style>
+
+<style id="siha-pro-nav-fix">
+/* Professional navigation: always anchored to the bottom of the screen */
+.pro-nav, .pro-bottom-nav, #proNav {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding-bottom: env(safe-area-inset-bottom) !important;
+}
+#doctorPro {
+  padding-bottom: calc(100px + env(safe-area-inset-bottom)) !important;
+}
+</style>
+<style id="siha-patient-info-fix">.patient-identity{margin:10px 0 14px}.patient-identity>b{font-size:18px}.member-pill{float:right;font-size:11px;font-weight:700;background:#e8f5f1;color:#246f67;border-radius:999px;padding:6px 9px}.clinical-extra textarea{width:100%;box-sizing:border-box;min-height:90px}</style>
+<style id="pro-bottom-bar-v16-fix">
+/* Keep the professional navigation at the bottom on every screen */
+.pro-nav,.pro-bottom-nav,#proNav{
+ position:fixed!important;
+ left:0!important;
+ right:0!important;
+ bottom:0!important;
+ top:auto!important;
+ width:100%!important;
+ margin:0!important;
+ z-index:10000!important;
+ box-sizing:border-box!important;
+ padding-bottom:env(safe-area-inset-bottom)!important;
+}
+#doctorPro{
+ padding-bottom:calc(105px + env(safe-area-inset-bottom))!important;
+}
+</style>
+
+<style id="pro-bottom-exact-fix">
+.pro-bottom{
+ position:fixed!important;
+ left:0!important; right:0!important;
+ bottom:0!important; top:auto!important;
+ width:100%!important;
+ margin:0!important;
+ z-index:99999!important;
+ box-sizing:border-box!important;
+ padding-bottom:env(safe-area-inset-bottom)!important;
+ transform:none!important;
+}
+#doctorPro{padding-bottom:calc(110px + env(safe-area-inset-bottom))!important}
+</style>
+
+<style id="medical-feed-style">
+.medical-feed{position:relative;margin:14px 0 24px;padding-left:18px;border-left:3px solid #b9d8d2}
+.feed-item{position:relative;margin:0 0 22px 14px}
+.feed-item:before{content:"";position:absolute;left:-25px;top:4px;width:13px;height:13px;border-radius:50%;background:#3b887f;border:3px solid #eaf3f1}
+.feed-date{font-size:14px;font-weight:800;color:#3b887f;margin-bottom:7px}
+.feed-card,.document-preview{background:#fff;border-radius:18px;padding:16px;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+.feed-card p{margin:9px 0;line-height:1.35}.document-preview{margin:14px 0;line-height:1.5}
+@media print{.pro-bottom,.topbar,button,.btn,.secondary{display:none!important}.document-preview{box-shadow:none;border:0}}
+</style>
+<style>
+.feed-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.mini-btn,.mini-link{border:1px solid #3b887f;border-radius:12px;padding:9px 11px;background:#fff;color:#246f67;font-weight:700}
+.mini-link{border-color:#d8e5e2;font-weight:600}
+</style><style id="agenda-patient-style">
+.agenda-list{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.agenda-slot{width:100%;display:grid;grid-template-columns:64px 1fr 28px;align-items:center;text-align:left;gap:10px;padding:14px;border-radius:16px;background:#fff;border:1px solid #dce8e5;color:#17313a}
+.agenda-slot.occupied{border-left:5px solid #3b887f}.agenda-slot.free{background:#f8fbfa}
+.agenda-time{font-size:18px;font-weight:800;color:#246f67}.agenda-slot small{display:block;margin-top:4px;color:#667b78}.chev{font-size:24px;color:#3b887f}
+</style>
+<style id="agenda-history-style">
+.pro-day.phistory{opacity:.72;background:#f1f3f3!important;border-color:#d7dddd!important;color:#60706d!important}
+.pro-day.ptoday{outline:3px solid #2f7f76!important;outline-offset:2px;background:#eaf6f3!important}
+.pro-day.ptoday small{font-size:9px!important;font-weight:800;color:#246f67!important}
+.history-empty{opacity:.65;cursor:default}
+</style>
+</head><body class="pro-mode-active"><div class="app">
+<section id="home" class="screen"></section><section id="requests" class="screen"></section>
+<section id="record" class="screen"></section><section id="profile" class="screen"></section><section id="flow" class="screen"></section>
+<section id="doctorPro" class="screen active">
+<div class="remote-test-banner"><b>Version test médecin</b><br>Données fictives — prototype Siha Maroc.</div>
+<div class="topbar"><h2>Espace médecin</h2></div>
+<div class="profilebox"><b>Dr Narimane Salmi</b><p class="sub">Oncologie médicale · Agdal</p></div>
+<div class="choice" onclick="doctorProPage('today')"><b>📅 Aujourd’hui</b><small>Rendez-vous et consultations du jour</small></div>
+<div class="choice" onclick="doctorProPage('agenda')"><b>🗓️ Agenda</b><small>Gérer les disponibilités au cabinet</small></div>
+<div class="choice" onclick="doctorProPage('requests')"><b>📨 Demandes</b><small>Demandes exceptionnelles et à domicile</small></div>
+<div class="choice" onclick="doctorProPage('home')"><b>🏠 Services à domicile</b><small>Disponibilités et zones d’intervention</small></div>
+<div class="choice" onclick="doctorProPage('profile')"><b>👤 Profil professionnel</b><small>Informations visibles par les patients</small></div>
+</section></div><script>
+let requests=[]; const data={
+doctor:{title:'Consulter un médecin',choices:[['Médecin généraliste','Trouver un généraliste disponible'],['Médecin spécialiste','Choisir une spécialité puis un médecin'],['Médecin à domicile','Professionnels proposant le déplacement']]},
+homecare:{title:'Soins à domicile',choices:[['💉 Infirmier à domicile','Injection, pansement et autres actes disponibles'],['🧪 Prélèvement à domicile','Prise de sang et prélèvements'],['🦵 Kinésithérapeute à domicile','Séances prescrites'],['👨‍⚕️ Médecin à domicile','Selon disponibilités']]},
+rx:{title:'J’ai une ordonnance',notice:'Photographiez ou importez votre ordonnance. Siha Maroc facilite la transmission au prestataire choisi.',choices:[['💊 Pharmacie','Vérifier la disponibilité puis réserver pour retrait'],['🧪 Laboratoire','Analyses et prélèvements'],['🩻 Radiologie / imagerie','Centres réalisant l’examen prescrit'],['🦵 Centre de kinésithérapie','Programmer les séances prescrites'],['🏠 Soins prescrits à domicile','Trouver un prestataire']]},
+hospital:{title:'Hospitalisation',notice:'La disponibilité affichée doit être confirmée par l’établissement avant toute admission.',choices:[['Médecine','Hospitalisation médicale'],['Chirurgie','Demande programmée'],['Maternité','Établissements partenaires'],['Hospitalisation de jour','Selon prescription'],['Réanimation / soins intensifs','Circuit de coordination et validation par l’établissement']]},
+dialysis:{title:'Dialyse',choices:[['Trouver un centre','Rechercher une disponibilité'],['Poursuivre mes séances','Planifier des séances récurrentes'],['Dialyse pendant un déplacement','Rechercher un accueil temporaire']]},
+ambulance:{title:'Ambulance & transport sanitaire',notice:'En cas d’urgence vitale, contactez immédiatement les services d’urgence compétents.',danger:true,choices:[['🚑 Ambulance standard','Transport en ambulance'],['🏥 Ambulance médicalisée','Prestataire disposant de l’équipe et des équipements adaptés'],['♿ Transport sanitaire','Transport avec assistance'],['📅 Transport programmé','Consultation, admission, sortie ou transfert']]},
+record:{title:'Mon dossier médical',choices:[['Créer / compléter mon profil médical','Antécédents, allergies, traitements'],['Mes consultations','Historique et comptes rendus'],['Mes ordonnances','Prescriptions et suivi'],['Mes analyses','Résultats'],['Mon imagerie','Examens et comptes rendus'],['Mes documents','Ajouter un document médical']]},
+orientation:{title:'Aide à l’orientation',notice:'Cette fonction aide à identifier un service. Elle ne pose pas de diagnostic médical.',choices:[['🎙️ Décrire mon problème','Parler ou écrire ce qui vous amène'],['🔎 Je connais déjà le professionnel','Rechercher directement une spécialité ou un service']]}}
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('homeHeader').style.display=id==='home'?'block':'none';window.scrollTo(0,0)}
+function tab(id,b){show(id);document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(id==='requests') renderRequests()}
+function openFlow(k){if(k==='doctor'){doctorStart();return;}if(k==='homecare'){homeServices();return;}let d=data[k],f=document.getElementById('flow');f.innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>${d.title}</h2></div>${d.notice?`<div class='notice ${d.danger?'danger':''}'>${d.notice}</div>`:''}<div>${d.choices.map(c=>`<div class='choice' onclick="details('${k}','${c[0].replaceAll("'","\\'")}')"><b>${c[0]}</b><small>${c[1]}</small></div>`).join('')}</div>`;show('flow')}
+const partnerCities=['Rabat','Casablanca','Salé','Témara','Marrakech','Fès','Tanger','Agadir','Meknès','Kénitra','Tétouan','Oujda'];
+const specialties=['Allergologie','Anatomie et cytologie pathologiques','Anesthésie-réanimation','Angiologie / Médecine vasculaire','Cardiologie','Chirurgie cardiovasculaire','Chirurgie générale','Chirurgie maxillo-faciale','Chirurgie pédiatrique','Chirurgie plastique, reconstructrice et esthétique','Chirurgie thoracique','Chirurgie vasculaire','Oncologie médicale','Endocrinologie, diabétologie et maladies métaboliques','Gastro-entérologie','Gériatrie','Gynécologie-obstétrique','Hématologie','Médecine du travail','Médecine interne','Médecine nucléaire','Médecine physique et de réadaptation','Néphrologie','Neurochirurgie','Neurologie','Oncologie médicale','Ophtalmologie','ORL / Oto-rhino-laryngologie','Pédiatrie','Pneumologie','Psychiatrie','Radiologie / Imagerie médicale','Rhumatologie','Traumatologie-orthopédie','Urologie'];
+const demoDoctors=[
+{name:'Dr Yasmine El Amrani',spec:'Médecine générale',city:'Rabat',zone:'Agdal',address:'Avenue Fal Ould Oumeir, Agdal',lang:'Arabe • Français',price:'300 DH',home:true},
+{name:'Dr Nabil Idrissi',spec:'Médecine générale',city:'Rabat',zone:'Hay Riad',address:'Avenue Annakhil, Hay Riad',lang:'Arabe • Français • Anglais',price:'350 DH',home:true},
+{name:'Dr Karim Alaoui',spec:'Cardiologie',city:'Rabat',zone:'Hay Riad',address:'Avenue Attine, Hay Riad',lang:'Arabe • Français',price:'500 DH',home:false},
+{name:'Dr Narimane Salmi',spec:'Oncologie médicale',city:'Rabat',zone:'Agdal',address:'Avenue de France, Agdal',lang:'Arabe • Français',price:'400 DH',home:false},
+{name:'Dr Lina Berrada',spec:'Pédiatrie',city:'Casablanca',zone:'Maarif',address:'Boulevard Al Massira, Maarif',lang:'Arabe • Français',price:'400 DH',home:true}
+];
+
+function homeServices(){
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Services à domicile</h2></div>
+ <div class='status-note'><b>🏠 Toutes les prestations à domicile sont regroupées ici.</b><br>Choisissez le professionnel puis demandez une intervention au plus tôt ou programmée.</div><div class='section-title'>De quel professionnel avez-vous besoin ?</div>
+ <div class='choice action-card' onclick="homeServiceMode('Médecin généraliste')"><b>🩺 Médecin généraliste</b><small>Consultation médicale à domicile</small></div>
+ <div class='choice action-card' onclick="homeServiceMode('Infirmier')"><b>💉 Infirmier(ère)</b><small>Soins infirmiers à domicile</small></div>
+ <div class='choice action-card' onclick="homeServiceMode('Kinésithérapeute')"><b>🦵 Kinésithérapeute</b><small>Kinésithérapie et rééducation à domicile</small></div>
+ <div class='choice action-card' onclick="homeServiceMode('Orthophoniste')"><b>🗣️ Orthophoniste</b><small>Orthophonie à domicile</small></div>
+ <div class='choice action-card' onclick="homeServiceMode('Psychomotricien')"><b>🧩 Psychomotricien(ne)</b><small>Psychomotricité à domicile</small></div>
+ <div class='choice action-card' onclick="homeServiceMode('Ergothérapeute')"><b>♿ Ergothérapeute</b><small>Ergothérapie à domicile</small></div>
+ <div class='choice action-card' onclick="homeServiceMode('Psychologue')"><b>🧠 Psychologue</b><small>Consultation psychologique à domicile</small></div>`;
+ show('flow');
+}
+function homeServiceMode(kind){
+ window.onCallKind=kind;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="homeServices()">‹</button><h2>${kind==='Infirmier'?'Infirmier(ère)':kind} à domicile</h2></div>
+ <div class='section-title'>Quand souhaitez-vous le service ?</div>
+ <div class='choice action-card' onclick="onCallRequest(window.onCallKind)"><b>⚡ Au plus tôt</b><small>Demande pour aujourd’hui, au moment où vous en avez besoin</small></div>
+ <div class='choice action-card' onclick="scheduledHomeService(window.onCallKind)"><b>📅 Programmer un service</b><small>Une seule demande envoyée aux professionnels compatibles de votre zone</small></div>`;
+}
+function homeMedical(){
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="homeServices()">‹</button><h2>Consultation médicale à domicile</h2></div>
+ <div class='choice action-card' onclick="doctorStart()"><b>📅 Consultation programmée</b><small>Choisir un médecin puis demander une consultation à domicile</small></div>
+ <div class='choice action-card' onclick="onCallRequest('Médecin généraliste')"><b>⚡ Médecin généraliste d’astreinte</b><small>Demander un médecin inscrit au service d’astreinte, au plus tôt</small></div>
+ <div class='status-note'>Les demandes d’astreinte sont envoyées uniquement aux médecins généralistes partenaires inscrits à cette prestation.</div>`;
+}
+function homeParamedical(){
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="homeServices()">‹</button><h2>Soins paramédicaux à domicile</h2></div>
+ <div class='choice action-card' onclick="scheduledParamedical()"><b>📅 Soin programmé</b><small>Planifier un soin à domicile</small></div>
+ <div class='choice action-card' onclick="onCallRequest('Infirmier')"><b>⚡ Infirmier d’astreinte</b><small>Demander un infirmier inscrit au service d’astreinte, au plus tôt</small></div>`;
+}
+
+const paramedicalPartners=[
+ {name:'Centre Santé & Rééducation',city:'Rabat',zone:'Agdal',services:['Soins infirmiers','Kinésithérapie / Rééducation','Orthophonie']},
+ {name:'Cabinet Paramédical Hay Riad',city:'Rabat',zone:'Hay Riad',services:['Soins infirmiers','Kinésithérapie / Rééducation','Psychomotricité']},
+ {name:'Centre Réadaptation Casablanca',city:'Casablanca',zone:'Maarif',services:['Kinésithérapie / Rééducation','Ergothérapie','Psychomotricité']},
+ {name:'Centre Orthophonie & Développement',city:'Casablanca',zone:'Racine',services:['Orthophonie','Psychomotricité']},
+ {name:'Cabinet Psychologie & Bien-être',city:'Rabat',zone:'Agdal',services:['Psychologie']},
+ {name:'Centre Psychologie Casablanca',city:'Casablanca',zone:'Maarif',services:['Psychologie']}
+];
+function activeParamedicalServices(){
+ return [...new Set(paramedicalPartners.flatMap(p=>p.services))].sort((a,b)=>a.localeCompare(b,'fr'));
+}
+function paramedicalStart(){
+ show('flow');
+ let services=activeParamedicalServices();
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Soins paramédicaux</h2></div>
+ <div class='section-title'>Quel soin recherchez-vous ?</div>
+ ${services.map(x=>`<div class='choice action-card' onclick="paramedicalLocation('${x.replaceAll("'","\\'")}')"><b>${x==='Soins infirmiers'?'💉':x.startsWith('Kinésithérapie')?'🦵':x==='Orthophonie'?'🗣️':x==='Psychomotricité'?'🧩':x==='Psychologie'?'🧠':'♿'} ${x}</b><small>Voir les centres et cabinets partenaires</small></div>`).join('')}
+ <div class='status-note'>Seuls les soins proposés par des centres ou cabinets partenaires actifs sont affichés.</div>`;
+}
+function paramedicalLocation(service){
+ window.paramedicalService=service;
+ let cities=[...new Set(paramedicalPartners.filter(p=>p.services.includes(service)).map(p=>p.city))].sort((a,b)=>a.localeCompare(b,'fr'));
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="paramedicalStart()">‹</button><h2>${service}</h2></div>
+ <div class='doctor-filter'><label>Ville</label><select id='paraCity'><option value=''>Choisir une ville</option>${cities.map(c=>`<option>${c}</option>`).join('')}</select></div>
+ <button class='btn' onclick="let c=document.getElementById('paraCity').value;if(c)paramedicalCenters(window.paramedicalService,c);else alert('Choisissez une ville')">Afficher les centres</button>
+ <button class='btn secondary' onclick="paramedicalCenters(window.paramedicalService,'À proximité')">📍 À proximité de moi</button>`;
+}
+function paramedicalCenters(service,city){
+ let list=paramedicalPartners.filter(p=>p.services.includes(service)&&(city==='À proximité'||p.city===city));
+ window.paramedicalResults=list;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="paramedicalLocation(window.paramedicalService)">‹</button><h2>Centres partenaires</h2></div>
+ <div class='choice info-card'><b>${service}</b><small>📍 ${city}</small></div>
+ ${list.length?list.map((p,i)=>`<div class='choice action-card' onclick="paramedicalCenterProfile(${i})"><b>🏥 ${p.name}</b><small>${p.zone}, ${p.city}</small></div>`).join(''):`<div class='choice info-card'><b>Aucun partenaire disponible</b><small>Aucun centre actif pour cette sélection.</small></div>`}`;
+}
+function paramedicalCenterProfile(i,keepMonth=false){
+ if(Number.isInteger(i) && i>=0){window.selectedParamedicalIndex=i;window.selectedParamedicalCenter=window.paramedicalResults[i]}
+ let p=window.selectedParamedicalCenter;
+ if(!keepMonth){let t=sihaToday();window.sihaCalYear=t.getFullYear();window.sihaCalMonth=t.getMonth()}
+ window.sihaCalType='paramedical';
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="paramedicalCenters(window.paramedicalService,'${p.city}')">‹</button><h2>${p.name}</h2></div>
+ <div class='choice info-card'><b>📍 Centre / cabinet</b><small>${p.zone}, ${p.city}</small></div>
+ <div class='choice info-card'><b>💉 Soin demandé</b><small>${window.paramedicalService}</small></div>
+ <div class='section-title'>Rendez-vous au centre</div>
+ <button class='btn secondary' onclick="sihaNextAvailable()">🔎 Voir la prochaine disponibilité</button>
+ ${sihaCalendarHTML(window.sihaCalYear,window.sihaCalMonth,5,'paramedicalSlots','paramedicalFullDay')}
+ <div class='status-note'>Touchez un jour vert pour voir les créneaux disponibles. Touchez un jour rouge pour demander exceptionnellement un rendez-vous. Utilisez ‹ et › pour consulter les mois suivants.</div><div class='calendar-bottom-space'></div>`;
+}
+function paramedicalFullDay(date){
+ window.selectedParamedicalFullDate=date;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="paramedicalCenterProfileBySelected(true)">‹</button><h2>Journée complète</h2></div>
+ <div class='status-note'>🔴 Le ${date} est complet. Vous pouvez envoyer une demande exceptionnelle au centre/cabinet.</div>
+ <button class='btn' onclick="chooseAccess('paramedical-exceptionnel')">Envoyer une demande exceptionnelle</button>`;
+}
+function paramedicalSlots(date){
+ window.selectedParamedicalDate=date;
+ window.selectedParamedicalSlot='';
+ let p=window.selectedParamedicalCenter;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="paramedicalCenterProfileBySelected(true)">‹</button><h2>${date}</h2></div>
+ <div class='profilebox'><b>${p.name}</b><p class='sub'>${window.paramedicalService} • Tous les créneaux disponibles au centre</p></div>
+ <div class='slotgrid'>${['09:00','09:30','10:30','11:00','14:00','15:30','16:00','17:30'].map(t=>`<div class='slot' onclick="selectParamedicalSlot(this,'${t}')">${t}</div>`).join('')}</div>
+ <div class='field'><label>Motif / précision</label><textarea id='paraReason' rows='3' placeholder='Motif ou précision (facultatif)'></textarea></div>
+ <div class='field'><label>Ordonnance / document médical (facultatif)</label><input type='file' accept='image/*,.pdf'></div>
+ <button class='btn' onclick="confirmParamedicalAppointment()">Continuer</button>`;
+}
+function selectParamedicalSlot(el,t){
+ document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
+ el.classList.add('selected');
+ window.selectedParamedicalSlot=t;
+}
+function confirmParamedicalAppointment(){
+ if(!window.selectedParamedicalSlot){alert('Choisissez un créneau disponible');return}
+ let p=window.selectedParamedicalCenter;
+ let reason=document.getElementById('paraReason').value||'Non renseigné';
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="paramedicalSlots(window.selectedParamedicalDate)">‹</button><h2>Confirmer le rendez-vous</h2></div>
+ <div class='profilebox'><b>${p.name}</b><p class='sub'>${window.paramedicalService}</p></div>
+ <div class='choice'><b>🏥 Au centre / cabinet</b><small>${p.zone}, ${p.city}</small></div>
+ <div class='choice'><b>📅 ${window.selectedParamedicalDate} à ${window.selectedParamedicalSlot}</b></div>
+ <div class='choice'><b>Motif / précision</b><small>${reason}</small></div>
+ <button class='btn' onclick="chooseAccess('paramedical-centre')">Confirmer le rendez-vous</button>`;
+}
+
+function paramedicalCenterProfileBySelected(keepMonth=false){
+ let p=window.selectedParamedicalCenter;
+ let i=(window.paramedicalResults||[]).findIndex(x=>x===p);
+ paramedicalCenterProfile(i>=0?i:0,keepMonth);
+}
+
+function scheduledParamedical(){
+ show('flow');
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Soins paramédicaux à domicile</h2></div>
+ <div class='doctor-filter'><label>Type de soin</label><select><option>Choisir</option><option>Soins infirmiers</option><option>Injection</option><option>Pansement</option><option>Prélèvement</option><option>Kinésithérapie</option><option>Soins postopératoires</option><option>Autre soin</option></select></div>
+ <div class='field'><label>Date souhaitée</label><input type='date'></div>
+ <div class='doctor-filter'><label>Période souhaitée</label><select><option>Matin</option><option>Après-midi</option><option>Soir</option><option>Indifférent</option></select></div>
+ <div class='field'><label>Localisation du patient *</label><input id='paramedGeo' readonly placeholder='Position non renseignée'></div>
+ <button class='btn secondary' type='button' onclick="requestPatientLocation('paramedGeo','paramedGeoStatus')">📍 Utiliser ma position actuelle</button>
+ <div id='paramedGeoStatus' class='status-note'>La localisation est nécessaire pour organiser l’intervention à domicile.</div>
+ <div class='field'><label>Complément d’adresse <span style='font-weight:400'>(facultatif)</span></label><input placeholder='Résidence, étage, appartement, repère…'></div>
+ <div class='field'><label>Précisions</label><textarea placeholder='Décrivez le soin demandé'></textarea></div>
+ <button class='btn' onclick="chooseAccess('soin-programme')">Continuer</button>`;
+}
+
+function requestPatientLocation(inputId,statusId){
+ const status=document.getElementById(statusId);
+ if(!navigator.geolocation){
+   status.innerHTML='La localisation n’est pas disponible sur cet appareil.';
+   return;
+ }
+ status.innerHTML='📍 Localisation en cours…';
+ navigator.geolocation.getCurrentPosition(
+   pos=>{
+     const lat=pos.coords.latitude.toFixed(6), lon=pos.coords.longitude.toFixed(6);
+     document.getElementById(inputId).value=lat+', '+lon;
+     status.innerHTML='✅ Position récupérée. Vous pourrez confirmer ou ajuster le point sur la carte dans la version connectée.';
+   },
+   err=>{
+     status.innerHTML='⚠️ Impossible d’obtenir votre position. Autorisez la localisation dans votre navigateur puis réessayez.';
+   },
+   {enableHighAccuracy:true,timeout:10000,maximumAge:60000}
+ );
+}
+function onCallRequest(kind){
+ window.onCallKind=kind;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="homeServices()">‹</button><h2>${kind} à domicile — Au plus tôt</h2></div>
+ <div class='notice danger'><b>En cas d’urgence vitale</b><br>Le service à domicile ne remplace pas les services d’urgence.</div>
+ <div class='status-note'><b>⚡ Au plus tôt</b><br>Cette demande concerne aujourd’hui et est envoyée immédiatement aux professionnels disponibles.</div>
+ <div class='field'><label>Motif de la demande *</label><textarea id='onCallReason' placeholder="${kind==='Médecin généraliste'?'Décrivez vos symptômes et la raison de votre demande':'Décrivez le soin infirmier nécessaire'}"></textarea></div>
+ ${kind==='Infirmier'?`<div class='field'><label>Ordonnance / document si nécessaire</label><input type='file' accept='image/*,.pdf'></div>`:''}
+ <div class='field'><label>Localisation du patient *</label><input id='onCallAddress' readonly placeholder='Position non renseignée'></div>
+ <button class='btn secondary' type='button' onclick="requestPatientLocation('onCallAddress','onCallGeoStatus')">📍 Utiliser ma position actuelle</button>
+ <div id='onCallGeoStatus' class='status-note'>La localisation est nécessaire pour rechercher les professionnels couvrant votre zone.</div>
+ <div class='field'><label>Complément d’adresse <span style='font-weight:400'>(facultatif)</span></label><input id='onCallAddressExtra' placeholder='Résidence, étage, appartement, repère…'></div>
+ <button class='btn' onclick="sendOnCall()">Rechercher au plus tôt</button>
+ <div class='status-note'>La demande sera transmise uniquement aux ${kind==='Médecin généraliste'?'médecins généralistes':'infirmiers'} partenaires inscrits et disponibles pour le service à domicile.</div>`;
+}
+
+function scheduledHomeService(kind){
+ window.onCallKind=kind;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="homeServiceMode(window.onCallKind)">‹</button><h2>Programmer un service</h2></div>
+ <div class='choice info-card'><b>${kind==='Médecin généraliste'?'🩺 Médecin généraliste':'💉 Infirmier(ère)'}</b><small>Service à domicile programmé</small></div>
+ <div class='field'><label>Motif de la demande *</label><textarea id='scheduledReason' placeholder="${kind==='Médecin généraliste'?'Décrivez le motif de la consultation':'Décrivez le soin infirmier nécessaire'}"></textarea></div>
+ ${kind==='Infirmier'?`<div class='field'><label>Ordonnance / document si nécessaire</label><input type='file' accept='image/*,.pdf'></div>`:''}
+ <div class='field'><label>Date souhaitée *</label><input id='scheduledDate' type='date'></div>
+ <div class='doctor-filter'><label>Période souhaitée *</label><select id='scheduledPeriod'><option value=''>Choisir</option><option>Matin</option><option>Après-midi</option><option>Soir</option></select></div>
+ <div class='field'><label>Localisation du patient *</label><input id='scheduledGeo' readonly placeholder='Position non renseignée'></div>
+ <button class='btn secondary' type='button' onclick="requestPatientLocation('scheduledGeo','scheduledGeoStatus')">📍 Utiliser ma position actuelle</button>
+ <div id='scheduledGeoStatus' class='status-note'>La localisation est nécessaire pour rechercher un professionnel couvrant votre zone.</div>
+ <div class='field'><label>Complément d’adresse <span style='font-weight:400'>(facultatif)</span></label><input id='scheduledExtra' placeholder='Résidence, étage, appartement, repère…'></div>
+ <button class='btn' onclick="sendScheduledHome()">Envoyer la demande</button>`;
+}
+function sendScheduledHome(){
+ let reason=document.getElementById('scheduledReason').value.trim();
+ let date=document.getElementById('scheduledDate').value;
+ let period=document.getElementById('scheduledPeriod').value;
+ let geo=document.getElementById('scheduledGeo').value;
+ if(!reason||!date||!period||!geo){alert('Veuillez renseigner le motif, la date, la période et la localisation');return}
+ window.scheduledHome={reason,date,period,geo};
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="scheduledHomeService(window.onCallKind)">‹</button><h2>Récapitulatif</h2></div>
+ <div class='choice info-card'><b>${window.onCallKind==='Médecin généraliste'?'🩺 Médecin généraliste':'💉 Infirmier(ère)'}</b><small>Service à domicile programmé</small></div>
+ <div class='choice info-card'><b>📅 Date et période</b><small>${date} • ${period}</small></div>
+ <div class='choice info-card'><b>📍 Localisation</b><small>${geo}</small></div>
+ <div class='choice info-card'><b>📝 Motif</b><small>${reason}</small></div>
+ <div class='status-note'>Après validation, Siha Maroc transmettra cette demande aux professionnels partenaires compatibles. Vous pourrez choisir parmi les propositions reçues (horaire et tarif) ; les autres seront ensuite clôturées.</div>
+ <button class='btn' onclick="chooseAccess('domicile-programme')">Continuer</button>`;
+}
+function sendOnCall(){
+ let reason=document.getElementById('onCallReason').value.trim();
+ let address=document.getElementById('onCallAddress').value.trim();
+ if(!reason||!address){alert('Veuillez renseigner le motif et utiliser la localisation du patient');return}
+ window.onCallReason=reason;window.onCallAddress=address;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="onCallRequest(window.onCallKind)">‹</button><h2>Recherche en cours</h2></div>
+ <div class='profilebox'><b>🔎 Recherche d’un ${window.onCallKind.toLowerCase()} disponible</b><p class='sub'>Votre motif a été transmis aux professionnels disponibles pour ce service.</p></div>
+ <div class='status-note'>Le délai d’arrivée n’est pas calculé par Siha Maroc. Le professionnel qui accepte la demande indique lui-même son délai estimé.</div>
+ <button class='btn' onclick="onCallOffer()">Simuler une réponse du professionnel</button>`;
+}
+function onCallOffer(){
+ let label=window.onCallKind||'Professionnel';
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="sendOnCall()">‹</button><h2>Professionnel disponible</h2></div>
+ <div class='choice info-card'><b>${label==='Médecin généraliste'?'👨‍⚕️ Dr Youssef Amrani':'💉 Infirmière Sara Benali'}</b><small>${label} • Service à domicile</small></div>
+ <div class='choice info-card'><b>⏱️ Délai annoncé par le professionnel</b><small>Environ 30 minutes</small></div>
+ <div class='choice info-card'><b>📍 Intervention</b><small>${window.onCallAddress||'Adresse du patient'}</small></div>
+ <div class='choice info-card'><b>📝 Motif transmis</b><small>${window.onCallReason||'Motif de la demande'}</small></div>
+ <button class='btn' onclick="chooseAccess('astreinte')">Accepter cette intervention</button>
+ <button class='btn secondary' onclick="sendOnCall()">Attendre une autre proposition</button>
+ <div class='status-note'>Après acceptation, le professionnel pourra mettre à jour son délai : En route → Arrive bientôt → Arrivé.</div>`;
+}
+function doctorStart(){document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Consulter un médecin</h2></div><div class='section-title'>Quel médecin recherchez-vous ?</div><div class='choice' onclick="doctorLocation('Médecine générale')"><b>👨‍⚕️ Médecin généraliste</b><small>Choisir la ville ou rechercher à proximité</small></div><div class='choice' onclick="doctorSpecialties()"><b>🩺 Médecin spécialiste</b><small>Choisir une spécialité</small></div>`;show('flow')}
+function doctorSpecialties(){
+ let activeSpecs=[...new Set(demoDoctors.filter(d=>d.spec!=='Médecine générale').map(d=>d.spec))].sort((a,b)=>a.localeCompare(b,'fr'));
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorStart()">‹</button><h2>Médecin spécialiste</h2></div>
+ <div class='doctor-filter'><label>Spécialité</label><select id='specSelect'><option value='Toutes les spécialités'>Toutes les spécialités</option>${activeSpecs.map(x=>`<option>${x}</option>`).join('')}</select></div>
+ <div class='status-note'>Seules les spécialités ayant au moins un médecin partenaire actif sont proposées.</div>
+ <button class='btn' onclick="doctorLocation(document.getElementById('specSelect').value)">Continuer</button>`
+}
+function doctorLocation(spec){
+ window.lastDoctorSpec=spec;
+ let matching=demoDoctors.filter(d=>{
+   if(spec==='Médecine générale') return d.spec==='Médecine générale';
+   if(spec==='Toutes les spécialités') return d.spec!=='Médecine générale';
+   return d.spec===spec;
+ });
+ let cities=[...new Set(matching.map(d=>d.city))].sort((a,b)=>a.localeCompare(b,'fr'));
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="${spec==='Médecine générale'?'doctorStart()':'doctorSpecialties()'}">‹</button><h2>${spec}</h2></div>
+ <div class='section-title'>Où souhaitez-vous consulter ?</div>
+ <div class='doctor-filter'><label>Ville</label><select id='citySelect'><option value=''>Choisir une ville</option>${cities.map(c=>`<option>${c}</option>`).join('')}</select></div>
+ <button class='btn' onclick="let c=document.getElementById('citySelect').value;if(c)doctorList(window.lastDoctorSpec,c);else alert('Choisissez une ville')">Afficher les médecins</button>
+ <button class='btn secondary' onclick="nearbyDoctors(window.lastDoctorSpec)">📍 À proximité de moi</button>
+ <div class='status-note'>Les villes affichées correspondent uniquement aux médecins partenaires actifs pour votre sélection.</div>`
+}
+function nearbyDoctors(spec){if(navigator.geolocation){navigator.geolocation.getCurrentPosition(()=>doctorList(spec,'À proximité'),()=>alert("La localisation n'est pas disponible. Choisissez une ville."));}else alert("La géolocalisation n'est pas disponible.");}
+function doctorList(spec,city){
+ let list=demoDoctors.filter(d=>{
+   let specOK = spec==='Toutes les spécialités' ? d.spec!=='Médecine générale' : d.spec===spec;
+   let cityOK = city==='À proximité' ? true : d.city===city;
+   return specOK && cityOK;
+ });
+ window.currentDoctorList=list;window.selectedCity=city;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorLocation(window.lastDoctorSpec)">‹</button><h2>Médecins</h2></div>
+ <div class='choice info-card'><b>${spec}</b><small>📍 ${city}</small></div>
+ <div class='mapbox'><span class='pin p1'>📍</span><span class='pin p2'>📍</span><span class='pin p3'>📍</span></div>
+ <div class='legend'>Prototype de carte — les positions réelles seront utilisées dans la version connectée.</div>
+ <div class='section-title'>Médecins partenaires</div>
+ ${list.length?list.map((d,i)=>`<div class='choice' onclick="doctorProfile(${i})"><b>👨‍⚕️ ${d.name}</b><small>${d.spec}</small><small>📍 ${d.zone}, ${d.city} • ${d.price}${d.home?' • Cabinet & domicile':' • Cabinet'}</small></div>`).join(''):`<div class='choice info-card'><b>Aucun médecin partenaire</b><small>Aucun résultat pour cette sélection.</small></div>`}`
+}
+function doctorProfile(i){let d=window.currentDoctorList[i];window.selectedDoctor=d;window.selectedDoctorIndex=i;document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorList(window.lastDoctorSpec,window.selectedCity)">‹</button><h2>${d.name}</h2></div><div class='profilebox'><div class='avatar'>👨‍⚕️</div><b>${d.name}</b><p class='sub'>${d.spec}</p></div><div class='choice info-card'><b>📍 Cabinet</b><small>${d.address}</small></div><div class='choice info-card'><b>🗣️ Langues</b><small>${d.lang}</small></div><div class='choice info-card'><b>💳 Tarif</b><small>${d.price}</small></div><div class='section-title'>Mode de consultation</div><div class='choice action-card' onclick="doctorCabinetCalendar()"><b>🏥 Au cabinet</b><small>Consulter l’agenda et choisir un créneau disponible</small></div>${d.home?`<div class='choice action-card' onclick="doctorHomeRequest()"><b>🏠 À domicile</b><small>Envoyer une demande et attendre la confirmation</small></div>`:''}`}
+const demoCalendar=[{d:'20',state:'available'},{d:'21',state:'full'},{d:'22',state:'available'},{d:'23',state:'available'},{d:'24',state:'full'},{d:'25',state:'available'},{d:'26',state:'available'},{d:'27',state:'full'},{d:'28',state:'available'},{d:'29',state:'available'},{d:'30',state:'full'}];
+
+const sihaMonths=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+function sihaToday(){
+ let t=new Date();
+ t.setHours(0,0,0,0);
+ return t;
+}
+function sihaIsCurrentMonth(year,month){
+ let t=sihaToday();
+ return year===t.getFullYear() && month===t.getMonth();
+}
+function sihaCalendarHTML(year,month,seed,greenFn,redFn){
+ let today=sihaToday();
+ let first=new Date(year,month,1),
+     n=new Date(year,month+1,0).getDate(),
+     offset=(first.getDay()+6)%7;
+ let canGoBack = new Date(year,month,1) > new Date(today.getFullYear(),today.getMonth(),1);
+ let h=`<div class='multi-cal-nav'>
+   <button ${canGoBack?'onclick="sihaChangeMonth(-1)"':"disabled class='cal-nav-disabled'"}>‹</button>
+   <div class='multi-cal-title'>${sihaMonths[month]} ${year}</div>
+   <button onclick="sihaChangeMonth(1)">›</button>
+ </div>
+ <div class='legend'>🟢 créneaux disponibles &nbsp;&nbsp; 🔴 journée complète</div>
+ <div class='multi-calendar'>`;
+ ['L','M','M','J','V','S','D'].forEach(x=>h+=`<div class='mday dow'>${x}</div>`);
+ for(let z=0;z<offset;z++)h+=`<div class='mday empty'></div>`;
+ for(let d=1;d<=n;d++){
+   let cellDate=new Date(year,month,d);
+   if(cellDate<today){
+     h+=`<div class='mday empty past-day'></div>`;
+     continue;
+   }
+   let available=((d+month+seed)%5!==0 && (d+month+seed)%7!==0);
+   let ds=`${d}/${String(month+1).padStart(2,'0')}/${year}`;
+   h+=`<button class='mday ${available?'available':'full'}' onclick="${available?greenFn:redFn}('${ds}')"><b>${d}</b><span class='dot'>${available?'🟢':'🔴'}</span></button>`;
+ }
+ return h+`</div>`;
+}
+function sihaChangeMonth(delta){
+ let today=sihaToday();
+ let target=new Date(window.sihaCalYear,window.sihaCalMonth+delta,1);
+ let currentMonth=new Date(today.getFullYear(),today.getMonth(),1);
+ if(target<currentMonth) return;
+ window.sihaCalYear=target.getFullYear();
+ window.sihaCalMonth=target.getMonth();
+ if(window.sihaCalType==='doctor') doctorCabinetCalendar(true);
+ else paramedicalCenterProfileBySelected(true);
+}
+function sihaNextAvailable(){
+ let today=sihaToday();
+ let y=window.sihaCalYear, m=window.sihaCalMonth;
+ for(let add=0;add<24;add++){
+   let dt=new Date(y,m+add,1), yy=dt.getFullYear(), mm=dt.getMonth();
+   let start=(yy===today.getFullYear()&&mm===today.getMonth())?today.getDate():1;
+   let n=new Date(yy,mm+1,0).getDate();
+   let seed=window.sihaCalType==='doctor'?2:5;
+   for(let d=start;d<=n;d++){
+     let available=((d+mm+seed)%5!==0 && (d+mm+seed)%7!==0);
+     if(available){
+       window.sihaCalYear=yy; window.sihaCalMonth=mm;
+       if(window.sihaCalType==='doctor') doctorCabinetCalendar(true);
+       else paramedicalCenterProfileBySelected(true);
+       return;
+     }
+   }
+ }
+}
+function doctorCabinetCalendar(keepMonth=false){
+ let d=window.selectedDoctor;
+ if(!keepMonth){let t=sihaToday();window.sihaCalYear=t.getFullYear();window.sihaCalMonth=t.getMonth()}
+ window.sihaCalType='doctor';
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorProfile(window.selectedDoctorIndex)">‹</button><h2>Disponibilités au cabinet</h2></div>
+ <div class='profilebox'><b>${d.name}</b><p class='sub'>${d.spec} • ${d.zone}</p></div>
+ <button class='btn secondary' onclick="sihaNextAvailable()">🔎 Voir la prochaine disponibilité</button>
+ ${sihaCalendarHTML(window.sihaCalYear,window.sihaCalMonth,2,'showDaySlots','fullDayRequest')}
+ <div class='status-note'>Touchez un jour vert pour voir tous les créneaux libres. Touchez un jour rouge pour demander exceptionnellement un rendez-vous. Utilisez ‹ et › pour consulter les mois suivants, sans limite au mois en cours.</div><div class='calendar-bottom-space'></div>`;
+}
+function showDaySlots(date){window.selectedDate=date;window.selectedSlot='';let d=window.selectedDoctor;document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorCabinetCalendar(true)">‹</button><h2>${date}</h2></div><div class='profilebox'><b>${d.name}</b><p class='sub'>Tous les créneaux disponibles au cabinet</p></div><div class='slotgrid'>${['09:00','09:30','10:30','11:00','14:00','15:30','16:00','17:30'].map(t=>`<div class='slot' onclick="selectCabinetSlot(this,'${t}')">${t}</div>`).join('')}</div><div class='field'><label>Motif de consultation</label><textarea id='docReason' rows='3' placeholder='Motif (facultatif)'></textarea></div><div class='field'><label>Document médical (facultatif)</label><input type='file' accept='image/*,.pdf'></div><button class='btn' onclick="confirmCabinet()">Continuer</button>`}
+function selectCabinetSlot(el,t){document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');window.selectedSlot=t}
+function confirmCabinet(){if(!window.selectedSlot){alert('Choisissez un créneau disponible');return}let d=window.selectedDoctor,reason=document.getElementById('docReason').value||'Non renseigné';document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="showDaySlots(window.selectedDate)">‹</button><h2>Confirmer le rendez-vous</h2></div><div class='profilebox'><b>${d.name}</b><p class='sub'>${d.spec}</p></div><div class='choice'><b>🏥 Au cabinet</b><small>${d.address}</small></div><div class='choice'><b>📅 ${window.selectedDate} à ${window.selectedSlot}</b></div><div class='choice'><b>Motif</b><small>${reason}</small></div><button class='btn' onclick="chooseAccess('cabinet')">Confirmer le rendez-vous</button>`}
+function fullDayRequest(date){window.selectedDate=date;let d=window.selectedDoctor;document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorCabinetCalendar(true)">‹</button><h2>Journée complète</h2></div><div class='status-note'>🔴 Le ${date} est complet. Vous pouvez envoyer une demande exceptionnelle au médecin ou à son secrétariat.</div><div class='field'><label>Période préférée</label><select><option>Indifférent</option><option>Matin</option><option>Après-midi</option><option>Fin de journée</option></select></div><div class='field'><label>Motif / précision</label><textarea rows='3' placeholder='Informations utiles'></textarea></div><button class='btn' onclick="chooseAccess('exception')">Envoyer la demande</button>`}
+function doctorHomeRequest(){let d=window.selectedDoctor;document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="doctorProfile(window.selectedDoctorIndex)">‹</button><h2>Consultation à domicile</h2></div><div class='profilebox'><b>${d.name}</b><p class='sub'>${d.spec}</p></div><div class='status-note'>La consultation à domicile n’est pas réservée automatiquement. La demande est envoyée au médecin / secrétariat pour confirmation.</div><div class='field'><label>Date souhaitée</label><input id='homeDate' type='date'></div><div class='field'><label>Période souhaitée</label><select><option>Matin</option><option>Après-midi</option><option>Soir</option><option>Indifférent</option></select></div><div class='field'><label>Adresse de consultation</label><input placeholder='Adresse complète'></div><div class='field'><label>Motif</label><textarea rows='3' placeholder='Motif de la demande'></textarea></div><div class='field'><label>Document médical (facultatif)</label><input type='file' accept='image/*,.pdf'></div><button class='btn' onclick="sendHomeRequest()">Envoyer la demande</button>`}
+function sendHomeRequest(){let d=window.selectedDoctor,date=document.getElementById('homeDate').value;if(!date){alert('Choisissez une date souhaitée');return}chooseAccess('domicile')}
+
+
+function chooseAccess(nextAction){
+ window.pendingAccessAction=nextAction;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="history.back()">‹</button><h2>Continuer</h2></div>
+ <div class='section-title'>Comment souhaitez-vous utiliser Siha Maroc ?</div>
+ <div class='access-card action' onclick="memberAccess()"><b>👤 Continuer en tant que membre</b><small>Votre demande, vos rendez-vous et vos documents pourront être retrouvés dans votre dossier et votre historique.</small></div>
+ <div class='access-card action' onclick="guestAccess()"><b>⚡ Continuer en tant qu’invité</b><small>Sans création de dossier médical permanent. Vous pourrez suivre cette demande avec votre téléphone.</small></div>
+ <div class='status-note'>En mode invité, seules les informations nécessaires à la prestation et aux obligations applicables sont traitées.</div>`;
+}
+function memberAccess(){
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="chooseAccess(window.pendingAccessAction)">‹</button><h2>Espace membre</h2></div>
+ <div class='field'><label>Téléphone ou e-mail</label><input placeholder='Téléphone ou e-mail'></div>
+ <div class='field'><label>Mot de passe</label><input type='password' placeholder='Mot de passe'></div>
+ <button class='btn' onclick="finishAccess('membre')">Se connecter et continuer</button>
+ <button class='btn secondary' onclick="alert('Création de compte à connecter à la base utilisateurs')">Créer un compte</button>`;
+}
+function guestAccess(){
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="chooseAccess(window.pendingAccessAction)">‹</button><h2>Continuer en invité</h2></div>
+ <span class='guest-badge'>MODE INVITÉ</span>
+ <div class='field'><label>Nom et prénom</label><input id='guestName' placeholder='Nom et prénom'></div>
+ <div class='field'><label>Téléphone</label><input id='guestPhone' type='tel' placeholder='06 XX XX XX XX'></div>
+ <div class='status-note'>Un code SMS permettra de vérifier votre numéro et de retrouver votre demande si vous quittez l’application.</div>
+ <button class='btn' onclick="guestOtp()">Recevoir le code SMS</button>`;
+}
+function guestOtp(){
+ let phone=document.getElementById('guestPhone').value;
+ if(!phone){alert('Saisissez votre numéro de téléphone');return}
+ window.guestPhone=phone;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="guestAccess()">‹</button><h2>Vérification</h2></div>
+ <div class='status-note'>Prototype : un code OTP serait envoyé par SMS au ${phone}.</div>
+ <div class='field'><label>Code reçu par SMS</label><input inputmode='numeric' placeholder='Code à 6 chiffres'></div>
+ <button class='btn' onclick="finishAccess('invité')">Vérifier et continuer</button>`;
+}
+function finishAccess(mode){
+ window.accessMode=mode;
+ let ref='SM-'+Math.floor(100000+Math.random()*900000);
+ window.guestRequestRef=ref;
+ document.getElementById('flow').innerHTML=`<div class='topbar'><h2>Demande enregistrée</h2></div>
+ <div class='profilebox'><b>✅ Votre demande est prise en compte</b><p class='sub'>Référence : ${ref}</p></div>
+ ${mode==='invité'?`<div class='status-note'>Vous êtes en mode invité. Pour revenir suivre cette demande, utilisez votre téléphone et un code SMS.</div><button class='btn secondary' onclick="guestTracking()">Suivre ma demande</button><button class='btn secondary' onclick="alert('La création du compte permettra de rattacher cette prestation au dossier du patient après vérification.')">Créer un compte et conserver cette prestation</button>`:`<div class='status-note'>Cette demande sera disponible dans Mes demandes et dans votre historique.</div>`}
+ <button class='btn' onclick="show('home')">Retour à l’accueil</button>`;
+}
+function guestTracking(){
+ show('flow');
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Suivre une demande</h2></div>
+ <span class='guest-badge'>ACCÈS INVITÉ</span>
+ <div class='field'><label>Numéro de téléphone</label><input id='trackPhone' type='tel' placeholder='06 XX XX XX XX'></div>
+ <button class='btn' onclick="guestTrackOtp()">Recevoir un code SMS</button>
+ <div class='status-note'>Après vérification du téléphone, seules vos demandes invitées encore accessibles seront affichées.</div>`;
+}
+function guestTrackOtp(){
+ let phone=document.getElementById('trackPhone').value;if(!phone){alert('Saisissez votre numéro de téléphone');return}
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="guestTracking()">‹</button><h2>Code de vérification</h2></div>
+ <div class='field'><label>Code reçu par SMS</label><input inputmode='numeric' placeholder='Code à 6 chiffres'></div>
+ <button class='btn' onclick="guestTrackResult()">Vérifier</button>`;
+}
+function guestTrackResult(){
+ document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Ma demande</h2></div>
+ <div class='choice info-card'><b>${window.guestRequestRef||'SM-245781'}</b><small>Statut : En attente de confirmation</small></div>
+ <div class='status-note'>Le suivi invité reste séparé du dossier médical membre.</div>
+ <button class='btn secondary' onclick="alert('Création de compte : cette demande pourra être rattachée après vérification.')">Créer mon compte et conserver cette prestation</button>`;
+}
+function details(k,label){if(k==='doctor'){doctorStart();return;}let f=document.getElementById('flow');f.innerHTML=`<div class='topbar'><button class='back' onclick="openFlow('${k}')">‹</button><h2>${label.replace(/^[^\wÀ-ÿ]+/,'')}</h2></div><div class='field'><label>Pour qui ?</label><select><option>Moi</option></select></div>${['rx','hospital','dialysis'].includes(k)?`<div class='field'><label>Document médical / ordonnance</label><input type='file' accept='image/*,.pdf'></div>`:''}${k==='ambulance'?`<div class='field'><label>Lieu de départ</label><input placeholder='Adresse de prise en charge'></div><div class='field'><label>Destination</label><input placeholder='Clinique, hôpital ou adresse'></div>`:''}<div class='field'><label>Date souhaitée</label><input type='date'></div><div class='field'><label>Informations complémentaires</label><textarea rows='4' placeholder='Ajoutez les informations utiles...'></textarea></div><button class='btn' onclick="submitReq('${label.replaceAll("'","\\'")}')">Envoyer la demande</button><button class='btn secondary' onclick="openFlow('${k}')">Retour</button>`}
+function submitReq(label){requests.unshift({label,date:new Date().toLocaleDateString('fr-FR'),status:'En attente'});document.getElementById('flow').innerHTML=`<div class='success'><div class='big'>✅</div><h2>Demande envoyée</h2><p class='sub'>Votre demande « ${label} » a été enregistrée dans ce prototype.</p><span class='pill'>En attente</span><button class='btn' onclick="document.querySelectorAll('.nav')[1].click()">Voir mes demandes</button><button class='btn secondary' onclick="document.querySelectorAll('.nav')[0].click()">Retour à l’accueil</button></div>`}
+function renderRequests(){let x=document.getElementById('reqList');x.innerHTML=requests.length?requests.map(r=>`<div class='req'><div class='row'><b>${r.label}</b><span class='pill'>${r.status}</span></div><div class='sub'>Créée le ${r.date}</div></div>`).join(''):`<div class='empty'>📅<h3>Aucune demande</h3><p>Vos rendez-vous et demandes apparaîtront ici.</p></div>`}
+function recordBack(){document.querySelectorAll('.nav')[2].click()}
+function recordPage(type){let f=document.getElementById('flow');let title='',body='';
+if(type==='medical'){title='Informations médicales';body=`<div class='notice'>Ces informations constituent votre profil médical. Elles ne sont pas une demande de soins.</div><div class='field'><label>Groupe sanguin</label><select><option>Non renseigné</option><option>A+</option><option>A−</option><option>B+</option><option>B−</option><option>AB+</option><option>AB−</option><option>O+</option><option>O−</option></select></div><div class='field'><label>Allergies</label><textarea rows='3' placeholder='Médicaments, aliments, autres allergies...'></textarea></div><div class='field'><label>Antécédents médicaux</label><textarea rows='3' placeholder='Maladies ou antécédents importants...'></textarea></div><div class='field'><label>Traitements en cours</label><textarea rows='3' placeholder='Médicaments et traitements actuels...'></textarea></div><div class='field'><label>Interventions / hospitalisations antérieures</label><textarea rows='3' placeholder='Interventions ou hospitalisations importantes...'></textarea></div><div class='field'><label>Contact d’urgence</label><input placeholder='Nom et téléphone'></div><button class='btn' onclick="saveMedical()">Enregistrer mon profil médical</button>`}
+if(type==='consultations'){title='Mes consultations';body=`<div class='empty'>👨‍⚕️<h3>Aucune consultation enregistrée</h3><p>Les consultations réalisées via Siha Maroc et leurs comptes rendus apparaîtront ici.</p></div>`}
+if(type==='prescriptions'){title='Mes ordonnances';body=`<div class='empty'>📄<h3>Aucune ordonnance enregistrée</h3><p>Vos ordonnances et prescriptions apparaîtront ici.</p></div>`}
+if(type==='labs'){title='Mes analyses';body=`<div class='empty'>🧪<h3>Aucun résultat d’analyse</h3><p>Les résultats transmis par les laboratoires partenaires ou ajoutés par vous apparaîtront ici.</p></div>`}
+if(type==='imaging'){title='Mon imagerie';body=`<div class='empty'>🩻<h3>Aucun examen d’imagerie</h3><p>Radiographies, échographies, scanners, IRM et comptes rendus apparaîtront ici.</p></div>`}
+if(type==='care'){title='Soins & kinésithérapie';body=`<div class='empty'>🦵<h3>Aucun soin enregistré</h3><p>Vos soins réalisés et le suivi de vos séances de kinésithérapie apparaîtront ici.</p></div>`}
+if(type==='documents'){title='Mes documents médicaux';body=`<div class='notice'>Ajoutez ici un document médical existant. Il sera classé dans votre dossier.</div><div class='field'><label>Type de document</label><select><option>Compte rendu médical</option><option>Ordonnance</option><option>Analyse</option><option>Imagerie / compte rendu</option><option>Autre document médical</option></select></div><div class='field'><label>Document</label><input type='file' accept='image/*,.pdf'></div><div class='field'><label>Note</label><textarea rows='3' placeholder='Description facultative...'></textarea></div><button class='btn' onclick="alert('Document ajouté dans le prototype')">Ajouter au dossier</button>`}
+f.innerHTML=`<div class='topbar'><button class='back' onclick="recordBack()">‹</button><h2>${title}</h2></div>${body}`;show('flow')}
+function saveMedical(){alert('Profil médical enregistré dans le prototype')}
+function openSearch(){document.getElementById('flow').innerHTML=`<div class='topbar'><button class='back' onclick="show('home')">‹</button><h2>Rechercher</h2></div><div class='field'><input autofocus placeholder='Cardiologue, IRM, dialyse, infirmier...'></div><div class='section-title'>Suggestions</div><div class='choice' onclick="openFlow('doctor')"><b>👨‍⚕️ Médecins & spécialités</b></div><div class='choice' onclick="openFlow('rx')"><b>🩻 Examens & ordonnance</b></div><div class='choice' onclick="openFlow('hospital')"><b>🏥 Hospitalisation</b></div>`;show('flow')}
+
+function doctorProHome(){document.getElementById('flow').innerHTML=`<div class="topbar"><button class="back" onclick="home()">‹</button><h2>Espace médecin</h2></div><div class="profilebox"><b>Interface médecin</b><p class="sub">Démonstration de la consultation</p></div><div class="card action-card" onclick="doctorConsultation(\'member\')"><b>👤 Patient membre</b><p class="sub">Ouvrir une consultation</p></div><div class="card action-card" onclick="doctorConsultation(\'guest\')"><b>👤 Patient invité</b><p class="sub">Consultation puis clôture simple</p></div>`}
+function doctorConsultation(k){window.proPatientKind=k;document.getElementById('flow').innerHTML=`<div class="topbar"><button class="back" onclick="doctorProHome()">‹</button><h2>Consultation</h2></div><div class="profilebox"><b>${k==='member'?'Patient membre':'Patient invité'}</b><p class="sub">Motif de consultation • Documents transmis</p></div>${k==='guest'?`<button class="btn" onclick="doctorFinishGuest()">✓ Consultation effectuée — Terminer</button>`:`<div class="card"><b>Comment documenter la consultation ?</b><div class="progrid"><button onclick="doctorSheet('assistant')">🎙️<b>Assistant</b><small>Brouillon structuré</small></button><button onclick="doctorSheet('dictée')">🎤<b>Dicter</b><small>Note médicale</small></button><button onclick="doctorSheet('manuel')">⌨️<b>Manuel</b><small>Saisie classique</small></button></div></div>`}` }
+function doctorSheet(mode){document.getElementById('flow').innerHTML=`<div class="topbar"><button class="back" onclick="doctorConsultation('member')">‹</button><h2>Fiche de consultation</h2></div><div class="card"><b>${mode==='assistant'?'🎙️ Assistant — brouillon à valider':mode==='dictée'?'🎤 Dictée médicale':'⌨️ Saisie manuelle'}</b><p class="sub">Le médecin reste responsable de la validation.</p></div><div class="field"><label>Observations cliniques</label><textarea rows="4"></textarea></div><div class="field"><label>Conclusion médicale</label><textarea rows="3"></textarea></div><div class="card action-card"><b>💊 Prescription / ordonnance</b><p class="sub">Ajouter si nécessaire</p></div><div class="card action-card"><b>🧪 Analyses / 🩻 Imagerie</b><p class="sub">Ajouter un examen complémentaire</p></div><div class="card action-card"><b>➡️ Orientation</b><p class="sub">Spécialiste ou soins paramédicaux</p></div><button class="btn" onclick="doctorFinishMember()">✓ Valider et terminer la consultation</button>`}
+function doctorFinishMember(){document.getElementById('flow').innerHTML=`<div class="topbar"><button class="back" onclick="doctorProHome()">‹</button><h2>Consultation terminée</h2></div><div class="profilebox"><b>✓ Consultation validée</b><p class="sub">Les éléments validés destinés au patient membre peuvent alimenter son dossier médical.</p></div>`}
+function doctorFinishGuest(){document.getElementById('flow').innerHTML=`<div class="topbar"><button class="back" onclick="doctorProHome()">‹</button><h2>Consultation terminée</h2></div><div class="profilebox"><b>✓ Consultation effectuée</b><p class="sub">Patient invité : consultation clôturée sans continuité de dossier dans Siha Maroc.</p></div>`}
+
+function openDoctorPro(){document.body.classList.add('pro-mode-active');
+ document.querySelectorAll('.screen').forEach(function(x){x.classList.remove('active')});
+ var p=document.getElementById('doctorPro');
+ if(p){p.classList.add('active');window.scrollTo(0,0)}
+}
+
+function resetDoctorPro(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' type='button' onclick="document.querySelectorAll('.nav')[0].click()">‹</button><h2>Espace médecin</h2></div>
+ <div class='profilebox'><b>Dr Narimane Salmi</b><p class='sub'>Oncologie médicale · Agdal</p></div>
+ <div class='choice' onclick="doctorProPage('today')"><b>📅 Aujourd’hui</b><small>Rendez-vous et consultations du jour</small></div>
+ <div class='choice' onclick="doctorProPage('agenda')"><b>🗓️ Agenda</b><small>Gérer les disponibilités au cabinet</small></div>
+ <div class='choice' onclick="doctorProPage('requests')"><b>📨 Demandes</b><small>Demandes exceptionnelles et à domicile</small></div>
+ <div class='choice' onclick="doctorProPage('home')"><b>🏠 Services à domicile</b><small>Disponibilités et zones d’intervention</small></div>
+ <div class='choice' onclick="doctorProPage('profile')"><b>👤 Profil professionnel</b><small>Informations visibles par les patients</small></div>`;
+}
+function doctorPatientHeader(){
+ return `<div class='profilebox'><div style='display:flex;justify-content:space-between;gap:8px'><b>Sara El Mansouri</b><span class='pill'>Membre Siha Maroc</span></div><p class='sub'>Femme · 52 ans</p><p class='sub'><b>Motif :</b> Suivi oncologique</p></div>`;
+}
+function doctorConsultPage(kind){
+ var p=document.getElementById('doctorPro');
+ var guest=(kind==='guest');
+ var header=guest
+ ? `<div class='profilebox'><div style='display:flex;justify-content:space-between;gap:8px'><b>Youssef Amrani</b><span class='pill'>Invité</span></div><p class='sub'>Homme · 46 ans</p><p class='sub'><b>Motif :</b> Contrôle</p></div>`
+ : doctorPatientHeader();
+
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorConsultBack(\'${kind}\')">‹</button><h2>Consultation</h2></div>
+ ${header}
+ <div class='choice' onclick="${guest?"doctorGuestHistory()":"doctorOwnHistory()"}"><b>👩‍⚕️ Dossier médical avec ${guest?'ce patient':'cette patiente'}</b><small>${guest?'Historique conservé côté médecin : consultations, comptes rendus, prescriptions et examens':'6 consultations avec Dr Narimane Salmi · dernière : 12/06/2026'}</small></div>
+ ${guest?'':`<div class='choice' onclick="doctorGeneralHistory()"><b>📂 Historique général de santé</b><small>Autres informations du dossier Siha Maroc — espace séparé</small></div>`}
+ <div class='section-title'>Nouvelle consultation</div>
+ <div class='choice' onclick="doctorClinicalForm('${guest?'guest-assistant':'assistant'}')"><b>🎙️ Assistant</b><small>Préparer un brouillon structuré</small></div>
+ <div class='choice' onclick="doctorClinicalForm('${guest?'guest-dictation':'dictation'}')"><b>🎤 Dicter</b><small>Transcrire la voix du médecin</small></div>
+ <div class='choice' onclick="doctorClinicalForm('${guest?'guest-manual':'manual'}')"><b>⌨️ Manuel</b><small>Saisir la consultation</small></div>
+ ${guest?`<div class='notice'><b>Patient invité</b><br>Le suivi de cette consultation reste disponible dans l'espace professionnel du médecin. Le patient ne dispose pas d'un historique général Siha Maroc comme un membre.</div>`:''}`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function doctorGuestHistory(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorRecordBack('guest')">‹</button><h2>Dossier médical</h2></div>
+ <div class='profilebox'><div style='display:flex;justify-content:space-between;gap:8px'><b>Youssef Amrani</b><span class='pill'>Invité</span></div><p class='sub'>Homme · 46 ans</p></div>
+ <div class='card'><b>Dossier médical avec Dr Narimane Salmi</b><p class='sub'>Dossier médical relatif au suivi de ce patient par Dr Narimane Salmi.</p></div>
+ <div class='choice'><b>Aujourd'hui — Consultation</b><small>Contrôle · en cours</small></div>
+ <div class='notice'>Cet historique appartient au suivi professionnel du médecin. Il ne donne pas au patient invité un dossier médical général Siha Maroc.</div>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function secretariatJournalHTML(kind){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_secretariat_docs')||'[]')}catch(e){}
+ return arr.filter(d=>d.kind===kind).map(d=>`<div class='feed-item'><div class='feed-date'>${d.addedAt}</div><div class='feed-card'><b>📄 ${d.type}</b><p>${d.name}</p><p class='sub'>Ajouté par le secrétariat · Document PDF</p></div></div>`).join('');
+}
+function doctorSavedJournalHTML(){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_doctor_consultations')||'[]')}catch(e){}
+ return arr.filter(x=>x.kind==='member').map(x=>`<div class='feed-item'><div class='feed-date'>${x.validatedAt} · ✓ Consultée</div><div class='feed-card'>
+ <b>Consultation validée</b><p><strong>Motif :</strong> ${x.motif}</p><p><strong>Observations cliniques :</strong> ${x.observations}</p>
+ <p><strong>Conclusion médicale :</strong> ${x.conclusion}</p><p><strong>Conduite à tenir :</strong> ${x.conduct}</p>
+ <p><strong>Médicaments :</strong> ${x.prescription}</p><p><strong>Analyses :</strong> ${x.analyses}</p>
+ <p><strong>Imagerie :</strong> ${x.imagerie}</p><p><strong>Orientation :</strong> ${x.orientation}</p>
+ <p><strong>Documents patient :</strong> ${(x.documents&&x.documents.length)?x.documents.map(d=>'📄 '+d.type+' — '+d.name).join('<br>'):'—'}</p>
+ <div class='feed-actions'><button class='mini-btn' onclick="doctorEditConsultation('${x.validatedAt}')">✏️ Modifier / Ajouter</button></div></div></div>`).join('');
+}
+function sihaPartnerDocuments(){
+ var raw=localStorage.getItem('siha_partner_documents');
+ if(raw){try{return JSON.parse(raw)}catch(e){}}
+ var docs=[
+  {id:'partner-nfs-001',patient:'Sara El Mansouri',category:'Analyses',title:'Résultat NFS',source:'Laboratoire partenaire Siha',date:'23/09/2026',prescriber:'Dr Narimane Salmi',sharedPatient:true,sharedDoctor:true},
+  {id:'partner-tdm-001',patient:'Sara El Mansouri',category:'Imagerie',title:'Compte rendu TDM',source:"Centre d’imagerie partenaire Siha",date:'23/09/2026',prescriber:'Dr Narimane Salmi',sharedPatient:true,sharedDoctor:true}
+ ];
+ localStorage.setItem('siha_partner_documents',JSON.stringify(docs));return docs;
+}
+function doctorAllPatientDocuments(kind){
+ var patient=kind==='member'?'Sara El Mansouri':'Youssef Amrani',out=[];
+ sihaPartnerDocuments().filter(d=>d.patient===patient&&d.sharedDoctor).forEach(d=>out.push({...d,origin:'🏥 Partenaire Siha'}));
+ var local=[];try{local=JSON.parse(localStorage.getItem('siha_patient_documents')||'[]')}catch(e){}
+ local.filter(d=>d.kind===kind&&d.name===patient).forEach(d=>out.push({id:d.id,patient:d.name,category:d.type,title:d.fileName,source:d.addedBy,date:d.addedAt,origin:'📎 Ajouté au cabinet',dataUrl:d.dataUrl,mime:d.mime}));
+ return out;
+}
+function doctorMedicalDocuments(kind,filter){
+ var docs=doctorAllPatientDocuments(kind), f=filter||'Tous';
+ if(f!=='Tous')docs=docs.filter(d=>d.category===f);
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="${kind==='member'?'doctorOwnHistory()':'doctorGuestHistory()'}">‹</button><h2>Documents médicaux</h2></div>
+ ${kind==='member'?doctorPatientHeader():`<div class='profilebox'><b>Youssef Amrani</b><p class='sub'>Homme · 46 ans · Invité</p></div>`}
+ <div class='notice'>Les documents reçus des partenaires Siha sont intégrés automatiquement au dossier du médecin. Pour un membre, le même document alimente aussi son historique général de santé.</div>
+ <div style='display:flex;gap:7px;overflow:auto;padding:4px 0 12px'>${['Tous','Analyses','Imagerie','Compte rendu','Ordonnance','Autre'].map(x=>`<button class='mini-btn' onclick="doctorMedicalDocuments('${kind}','${x}')">${x}</button>`).join('')}</div>
+ ${docs.length?docs.map(d=>`<div class='card'><b>${d.category==='Analyses'?'🧪':d.category==='Imagerie'?'🩻':'📄'} ${d.title}</b><p class='sub'>${d.date}</p><p><b>Provenance :</b> ${d.origin}<br><b>Source :</b> ${d.source}</p>${d.sharedPatient?`<span class='pill'>✓ Historique patient</span> <span class='pill'>✓ Dossier médecin</span>`:`<span class='pill'>Dossier médecin</span>`}${d.dataUrl?`<br><button class='mini-btn' style='margin-top:12px' onclick="doctorPreviewPatientDoc('${d.id}','${kind}')">👁️ Ouvrir le document</button>`:''}</div>`).join(''):`<div class='card'><p class='sub'>Aucun document dans cette catégorie.</p></div>`}`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorPartnerJournalHTML(){
+ return sihaPartnerDocuments().filter(d=>d.patient==='Sara El Mansouri'&&d.sharedDoctor).map(d=>`<div class='feed-item'><div class='feed-date'>${d.date}</div><div class='feed-card'><b>${d.category==='Analyses'?'🧪':'🩻'} ${d.title} reçu</b><p>${d.source}</p><p class='sub'>Partenaire Siha · Ajout automatique au dossier médecin et à l’historique général du patient</p></div></div>`).join('');
+}
+function doctorOwnHistory(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorRecordBack('member')">‹</button><h2>Dossier médical</h2></div>${doctorPatientHeader()}
+ <div class='notice'><b>Dossier relatif au Dr Narimane Salmi</b><br>Journal chronologique des informations issues de ses consultations avec cette patiente.</div>
+ <div class='choice' onclick="doctorMedicalDocuments('member')"><b>📁 Documents médicaux</b><small>Analyses · Imagerie · Comptes rendus · Ordonnances · Autres</small></div>
+ <div class='medical-feed'>${doctorPartnerJournalHTML()}${doctorPatientDocsJournal('member')}${secretariatJournalHTML('member')}${doctorSavedJournalHTML()}
+  <div class='feed-item'><div class='feed-date'>12 juin 2026</div><div class='feed-card'>
+   <b>Consultation de suivi</b>
+   <p><strong>Motif :</strong> Suivi oncologique</p>
+   <p><strong>Observations cliniques :</strong> Tolérance du traitement, examen clinique de contrôle.</p>
+   <p><strong>Conclusion médicale :</strong> État clinique stable.</p>
+   <p><strong>Conduite à tenir :</strong> Poursuite du protocole et contrôle biologique.</p>
+   <p><strong>Médicaments :</strong> Prescription enregistrée.</p>
+   <p><strong>Analyses :</strong> NFS, créatinine, bilan hépatique.</p>
+   <p><strong>Imagerie :</strong> —</p><p><strong>Orientation :</strong> —</p><div class='feed-actions'><button class='mini-btn' onclick="doctorEditConsultation('12/06/2026')">✏️ Modifier / Ajouter</button><button class='mini-link' onclick="doctorVersionHistory('12/06/2026')">Historique des modifications</button></div>
+  </div></div>
+  <div class='feed-item'><div class='feed-date'>24 avril 2026</div><div class='feed-card'>
+   <b>Consultation de suivi</b>
+   <p><strong>Motif :</strong> Évaluation thérapeutique</p>
+   <p><strong>Observations cliniques :</strong> Consultation de contrôle.</p>
+   <p><strong>Conclusion médicale :</strong> Évaluation à compléter par imagerie.</p>
+   <p><strong>Conduite à tenir :</strong> Scanner de contrôle puis réévaluation.</p>
+   <p><strong>Médicaments :</strong> —</p><p><strong>Analyses :</strong> —</p>
+   <p><strong>Imagerie :</strong> Scanner de contrôle.</p><p><strong>Orientation :</strong> —</p><div class='feed-actions'><button class='mini-btn' onclick="doctorEditConsultation('24/04/2026')">✏️ Modifier / Ajouter</button><button class='mini-link' onclick="doctorVersionHistory('24/04/2026')">Historique des modifications</button></div>
+  </div></div>
+ </div>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+
+function doctorEditConsultation(date){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorOwnHistory()">‹</button><h2>Modifier / Ajouter</h2></div>${doctorPatientHeader()}
+ <div class='notice'><b>Consultation validée du ${date}</b><br>Une nouvelle version sera créée. La version précédente restera dans l’historique.</div>
+ <div class='field'><label>Motif</label><textarea id='cMotif' rows='2'>Suivi oncologique</textarea></div>
+ <div class='field'><label>Observations cliniques</label><textarea rows='4'>Tolérance du traitement, examen clinique de contrôle.</textarea></div>
+ <div class='field'><label>Conclusion médicale</label><textarea rows='3'>État clinique stable.</textarea></div>
+ <div class='field'><label>Conduite à tenir</label><textarea rows='3'>Poursuite du protocole et contrôle biologique.</textarea></div>
+ <div class='field'><label>Prescription / médicaments</label><textarea rows='3'>Prescription enregistrée.</textarea></div>
+ <div class='field'><label>Analyses demandées</label><textarea rows='3'>NFS, créatinine, bilan hépatique.</textarea></div>
+ <div class='field'><label>Imagerie demandée</label><textarea rows='3'></textarea></div>
+ <div class='field'><label>Orientation</label><textarea rows='3'></textarea></div>
+ <div class='field'><label>Motif de la modification</label><input id='editReason' placeholder='Complément, correction...'></div>
+ <button class='btn' onclick="doctorSaveNewVersion('${date}')">✓ Valider la nouvelle version</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function doctorSaveNewVersion(date){
+ var reason=document.getElementById('editReason').value||'Complément au dossier';
+ var stamp=new Date().toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'});
+ localStorage.setItem('siha_last_revision',JSON.stringify({date,reason,stamp}));
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorOwnHistory()">‹</button><h2>Dossier médical</h2></div>${doctorPatientHeader()}
+ <div class='successbox'><b>✓ Nouvelle version enregistrée</b><p class='sub'>Modifié le ${stamp} par Dr Narimane Salmi.<br>${reason}</p></div>
+ <button class='btn' onclick="doctorOwnHistory()">Retour au dossier médical</button>`;
+ addProNav('today');
+}
+function doctorVersionHistory(date){
+ var saved; try{saved=JSON.parse(localStorage.getItem('siha_last_revision')||'null')}catch(e){}
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorOwnHistory()">‹</button><h2>Historique des modifications</h2></div>${doctorPatientHeader()}
+ <div class='card'><b>Version initiale · ${date}</b><p class='sub'>Consultation validée par Dr Narimane Salmi.</p></div>
+ ${saved&&saved.date===date?`<div class='card'><b>Version modifiée · ${saved.stamp}</b><p class='sub'>${saved.reason}<br>Dr Narimane Salmi</p></div>`:`<div class='notice'>Aucune modification ultérieure enregistrée pour cette consultation.</div>`}`;
+ addProNav('today');
+}
+function doctorLabDocument(){
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorPostValidation()">‹</button><h2>Demande d’analyses</h2></div>${doctorPatientHeader()}
+ <div class='document-preview'><b>Dr Narimane Salmi</b><p>Oncologie médicale</p><hr><p><b>Patiente :</b> Sara El Mansouri · 52 ans</p><p><b>Analyses demandées :</b></p><p>${(window.sihaLastValidated&&window.sihaLastValidated.analyses)||'—'}</p></div>
+ <button class='btn' onclick="window.print()">🖨️ Imprimer</button><button class='secondary' onclick="window.print()">📄 PDF / Enregistrer en PDF</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function doctorImagingDocument(){
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorPostValidation()">‹</button><h2>Demande d’imagerie</h2></div>${doctorPatientHeader()}
+ <div class='document-preview'><b>Dr Narimane Salmi</b><p>Oncologie médicale</p><hr><p><b>Patiente :</b> Sara El Mansouri · 52 ans</p><p><b>Imagerie demandée :</b></p><p>${(window.sihaLastValidated&&window.sihaLastValidated.imagerie)||'—'}</p><p><b>Indication clinique :</b> Suivi oncologique.</p></div>
+ <button class='btn' onclick="window.print()">🖨️ Imprimer</button><button class='secondary' onclick="window.print()">📄 PDF / Enregistrer en PDF</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function doctorGeneralHistory(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorGeneralHistoryBack()">‹</button><h2>Historique général</h2></div>${doctorPatientHeader()}
+ <div class='notice'>Espace séparé du suivi du Dr Narimane Salmi. Les accès aux informations provenant d'autres professionnels seront autorisés et tracés.</div>
+ <div class='choice'><b>💊 Traitements & ordonnances</b><small>Historique disponible dans Siha Maroc</small></div>
+ <div class='choice'><b>🧪 Analyses biologiques</b><small>Résultats et documents disponibles</small></div>
+ <div class='choice'><b>🩻 Imagerie médicale</b><small>Examens et comptes rendus disponibles</small></div>
+ <div class='choice'><b>🏥 Hospitalisations</b><small>Épisodes et documents disponibles</small></div>
+ <div class='choice'><b>📄 Autres documents médicaux</b><small>Documents partagés dans le dossier</small></div>`;
+ var gh=document.getElementById('doctorPro'); if(gh){gh.innerHTML+=`<div class='card'><b>Documents reçus des partenaires Siha</b>${sihaPartnerDocuments().filter(d=>d.patient==='Sara El Mansouri'&&d.sharedPatient).map(d=>`<p><b>${d.category} :</b> ${d.title}<br><small>${d.date} · ${d.source}</small></p>`).join('')}</div>`;} addProNav('today'); window.scrollTo(0,0);
+}
+function doctorClinicalForm(mode){
+ var p=document.getElementById('doctorPro');
+ var guest=mode.indexOf('guest-')===0;
+ var baseMode=mode.replace('guest-','');
+ var title=baseMode==='assistant'?'🎙️ Assistant de consultation':baseMode==='dictation'?'🎤 Dictée médicale':'⌨️ Saisie manuelle';
+ var intro=baseMode==='assistant'
+ ? `<div class='card'><b>${title}</b><p class='sub'>L’assistant prépare uniquement un brouillon. Le médecin relit et valide.</p><label class='checkline'><input type='checkbox'> Consentement du patient recueilli</label></div>`
+ : `<div class='card'><b>${title}</b><p class='sub'>Le médecin reste responsable de toutes les informations validées.</p></div>`;
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorConsultPage('${guest?'guest':'member'}')">‹</button><h2>Fiche de consultation</h2></div>
+ ${guest
+ ? `<div class='profilebox'><div style='display:flex;justify-content:space-between;gap:8px'><b>Youssef Amrani</b><span class='pill'>Invité</span></div><p class='sub'>Homme · 46 ans</p><p class='sub'><b>Motif :</b> Contrôle</p></div>`
+ : doctorPatientHeader()}${intro}
+ <div class='field'><label>Motif</label><textarea id='cMotif' rows='2'>Suivi oncologique</textarea></div>
+ <div class='field'><label>Observations cliniques</label><textarea id='cObs' rows='4' placeholder='Observations cliniques...'></textarea></div>
+ <div class='field'><label>Conclusion médicale</label><textarea id='cConclusion' rows='3' placeholder='Conclusion médicale...'></textarea></div><div class='field'><label>Conduite à tenir</label><textarea id='cConduct' rows='3' placeholder='Suivi, traitement, surveillance, prochain contrôle...'></textarea></div>
+ <div class='choice' onclick="toggleClinicalBlock('proRx')"><b>💊 Prescription / ordonnance</b><small>Ajouter si nécessaire</small></div>
+ <div id='proRx' class='clinical-extra'><div class='field'><label>Prescription</label><textarea id='cRx' rows='4' placeholder='Médicament, dosage, durée...'></textarea></div></div>
+ <div class='choice' onclick="toggleClinicalBlock('proLab')"><b>🧪 Analyses biologiques</b><small>Demander une ou plusieurs analyses</small></div>
+ <div id='proLab' class='clinical-extra'><div class='field'><label>Analyses demandées</label><textarea id='cLab' rows='3' placeholder='Ex. NFS, créatinine, bilan hépatique...'></textarea></div></div>
+ <div class='choice' onclick="toggleClinicalBlock('proImg')"><b>🩻 Imagerie médicale</b><small>Demander un ou plusieurs examens</small></div>
+ <div id='proImg' class='clinical-extra'><div class='field'><label>Examens demandés</label><textarea id='cImg' rows='3' placeholder='Ex. scanner, IRM, échographie, TEP-scan...'></textarea></div></div>
+ <div class='choice' onclick="toggleClinicalBlock('proOrient')"><b>➡️ Orientation</b><small>Spécialiste ou soins paramédicaux</small></div>
+ <div id='proOrient' class='clinical-extra'><div class='field'><label>Orienter vers</label><select><option>Médecin spécialiste</option><option>Soins paramédicaux</option><option>Autre</option></select></div><div class='field'><label>Précision</label><input id='cOrient' placeholder='Spécialité / prestation'></div></div>
+ <div class='choice' onclick="toggleClinicalBlock('proDocs')"><b>📎 Documents du patient</b><small>Scanner ou ajouter un compte rendu, ordonnance, imagerie, analyse…</small></div>
+ <div id='proDocs' class='clinical-extra'>
+   <div class='field'><label>Type de document</label>
+    <select id='cDocType'><option>Compte rendu</option><option>Ordonnance</option><option>Imagerie / Scanner</option><option>Résultat d’analyse</option><option>Lettre médicale</option><option>Autre</option></select>
+   </div>
+   <input id='cDocFile' type='file' accept='image/*,application/pdf' capture='environment' multiple style='display:none' onchange="doctorAddScannedDocs(this)">
+   <button type='button' class='secondary' onclick="document.getElementById('cDocFile').click()">📷 Scanner / Photographier un document</button>
+   <div id='cDocList' class='card' style='margin-top:10px'><b>Documents ajoutés</b><p class='sub'>Aucun document pour le moment.</p></div>
+ </div>
+ <button class='btn' onclick="doctorCaptureConsultation('${guest?'guest':'member'}')">Relire et terminer</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+window.sihaScannedDocs=window.sihaScannedDocs||[];
+function doctorAddScannedDocs(input){
+ var type=(document.getElementById('cDocType')||{}).value||'Document';
+ Array.from(input.files||[]).forEach(f=>{
+   window.sihaScannedDocs.push({id:'doc-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),type:type,name:f.name||('Document '+(window.sihaScannedDocs.length+1)),mime:f.type||'',size:f.size||0,addedAt:new Date().toLocaleString('fr-FR')});
+ });
+ doctorRenderScannedDocs(); input.value='';
+}
+function doctorRenderScannedDocs(){
+ var box=document.getElementById('cDocList');if(!box)return;
+ var a=window.sihaScannedDocs||[];
+ box.innerHTML=a.length?`<b>Documents ajoutés (${a.length})</b>`+a.map((d,i)=>`<div style="padding:10px 0;border-bottom:1px solid #e6eeeb"><b>📄 ${d.type}</b><br><small>${d.name} · ${d.addedAt}</small><br><button type="button" class="mini-link" onclick="doctorRemoveScannedDoc(${i})">Retirer</button></div>`).join(''):`<b>Documents ajoutés</b><p class='sub'>Aucun document pour le moment.</p>`;
+}
+function doctorRemoveScannedDoc(i){window.sihaScannedDocs.splice(i,1);doctorRenderScannedDocs()}
+function doctorCaptureConsultation(kind){
+ function v(id){var e=document.getElementById(id);return e?e.value.trim():''}
+ window.sihaDraftConsult={
+  kind:kind,motif:v('cMotif'),observations:v('cObs'),conclusion:v('cConclusion'),conduct:v('cConduct'),
+  prescription:v('cRx'),analyses:v('cLab'),imagerie:v('cImg'),orientation:v('cOrient'),documents:(window.sihaScannedDocs||[]).slice()
+ };
+ doctorClinicalReview();
+}
+function toggleClinicalBlock(id){document.getElementById(id).classList.toggle('show')}
+function doctorClinicalReview(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorConsultPage('member')">‹</button><h2>Validation</h2></div>
+ ${doctorPatientHeader()}
+ <div class='card'><b>Résumé de la consultation</b><p class='sub'>Observations cliniques · Conclusion médicale · Conduite à tenir · Prescription · Analyses · Imagerie · Orientation</p></div>
+ <div class='notice'>Après validation, cette consultation sera ajoutée au journal du dossier médical de cette patiente avec Dr Narimane Salmi.</div>
+ <button class='btn' onclick="doctorValidateConcreteConsultation()">✓ Valider la consultation</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function doctorValidateConcreteConsultation(){
+ var d=window.sihaDraftConsult||{};
+ var origin=window.sihaConsultOrigin||{};
+ try{if(!origin.source)origin=JSON.parse(localStorage.getItem('siha_consult_origin')||'{}')}catch(e){}
+ var record={
+  id:'consult-'+Date.now(),patient:d.kind==='guest'?'Youssef Amrani':'Sara El Mansouri',
+  kind:d.kind||'member',motif:d.motif||'—',observations:d.observations||'—',conclusion:d.conclusion||'—',
+  conduct:d.conduct||'—',prescription:d.prescription||'—',analyses:d.analyses||'—',imagerie:d.imagerie||'—',
+  orientation:d.orientation||'—',documents:d.documents||[],validatedAt:new Date().toLocaleString('fr-FR'),
+  day:origin.day||'Aujourd’hui',time:origin.time||'10:30',status:'Consulté'
+ };
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_doctor_consultations')||'[]')}catch(e){}
+ arr.unshift(record);localStorage.setItem('siha_doctor_consultations',JSON.stringify(arr));
+ localStorage.setItem('siha_last_consultation',JSON.stringify(record));
+ window.sihaLastValidated=record;
+ window.sihaScannedDocs=[];
+ var ap=sihaAgendaAppointments(),ak=record.day+'|'+record.time;
+ if(ap[ak]){ap[ak].appointmentState='consulted';localStorage.setItem('siha_agenda_appointments',JSON.stringify(ap));}
+ doctorPostValidation();
+}
+function doctorPostValidation(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorProPage('today')">‹</button><h2>Documents</h2></div>
+ ${doctorPatientHeader()}
+ <div class='successbox'><b>✓ Consultation validée</b><p class='sub'>Ajoutée au dossier médical de cette patiente avec Dr Narimane Salmi.</p></div>
+ <div class='choice' onclick="doctorPrescriptionDocument()"><b>💊 Ordonnance</b><small>Prévisualiser · PDF · Imprimer</small></div>
+ <div class='choice' onclick="doctorReferralLetter()"><b>✉️ Lettre d’orientation</b><small>Si une orientation a été renseignée · Manuel ou proposition assistée</small></div>
+ <div class='choice' onclick="doctorLabDocument()"><b>🧪 Demande d’analyses</b><small>Prévisualiser · PDF · Imprimer</small></div>
+ <div class='choice' onclick="doctorImagingDocument()"><b>🩻 Demande d’imagerie</b><small>Prévisualiser · PDF · Imprimer</small></div>
+ <button class='secondary' onclick="doctorFinishAfterValidation()">Terminer et revenir à l’agenda</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+function doctorFinishAfterValidation(){
+ var o=window.sihaConsultOrigin||{};
+ try{if(!o.source)o=JSON.parse(localStorage.getItem('siha_consult_origin')||'{}')}catch(e){}
+ if(o&&o.source==='agenda'){
+   var d=o.day;
+   window.sihaConsultOrigin=null;
+   localStorage.removeItem('siha_consult_origin');
+   openProDay(d);
+   return;
+ }
+ doctorProPage('today');
+}
+function doctorPrescriptionDocument(){
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorPostValidation()">‹</button><h2>Ordonnance</h2></div>
+ ${doctorPatientHeader()}<div class='document-preview'><b>Dr Narimane Salmi</b><p>Oncologie médicale</p><hr><p><b>Patiente :</b> Sara El Mansouri · 52 ans</p><p><b>Prescription :</b></p><p>${(window.sihaLastValidated&&window.sihaLastValidated.prescription)||'—'}</p></div>
+ <button class='btn' onclick="window.print()">🖨️ Imprimer</button><button class='secondary' onclick="window.print()">📄 PDF / Enregistrer en PDF</button>`;
+ addProNav('today');
+}
+function doctorReferralLetter(){
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorPostValidation()">‹</button><h2>Lettre d’orientation</h2></div>
+ ${doctorPatientHeader()}
+ <div class='choice' onclick="doctorLetterEditor(false)"><b>⌨️ Écrire manuellement</b><small>Rédiger librement la lettre</small></div>
+ <div class='choice' onclick="doctorLetterEditor(true)"><b>✨ Proposition assistée</b><small>Préparer une proposition à partir des informations de la consultation</small></div>`;
+ addProNav('today');
+}
+function doctorLetterEditor(assisted){
+ var draft=assisted?`Cher confrère / Chère consœur,\n\nJe vous adresse Mme Sara El Mansouri, âgée de 52 ans, dans le cadre de son suivi oncologique.\n\nMotif de l’orientation :\n\nÉléments cliniques utiles :\n\nConclusion médicale :\n\nConduite à tenir / avis demandé :\n\nBien confraternellement,\nDr Narimane Salmi`:`Cher confrère / Chère consœur,\n\n`;
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorReferralLetter()">‹</button><h2>Lettre d’orientation</h2></div>
+ ${doctorPatientHeader()}<div class='field'><label>Lettre</label><textarea id='referralLetter' rows='15'>${draft}</textarea></div>
+ <button class='btn' onclick="window.print()">🖨️ Imprimer</button><button class='secondary' onclick="window.print()">📄 PDF / Enregistrer en PDF</button>`;
+ addProNav('today');
+}
+function doctorConsultFinished(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorProPage('today')">‹</button><h2>Consultation terminée</h2></div>
+ <div class='successbox'><b>✓ Consultation validée</b><p class='sub'>Les éléments validés destinés au patient peuvent alimenter son dossier médical Siha Maroc.</p></div>
+ <button class='btn' onclick="doctorProPage('today')">Retour aux consultations</button>`;
+ addProNav('today'); window.scrollTo(0,0);
+}
+
+/* ===== Agenda professionnel V14 ===== */
+window.proCalYear=2026; window.proCalMonth=8;
+window.proDayState={};
+window.proDaySlots={};
+window.proBooked={"21/09/2026":["10:30"],"22/09/2026":["15:30"]};
+
+function proDateKey(y,m,d){return String(d).padStart(2,'0')+'/'+String(m+1).padStart(2,'0')+'/'+y}
+function proStateFor(y,m,d){
+ let k=proDateKey(y,m,d);
+ if(window.proDayState[k]) return window.proDayState[k];
+ let wd=new Date(y,m,d).getDay();
+ if(wd===0) return "blocked";
+ return "open";
+}
+function proMonthHTML(){
+ let y=proCalYear,m=proCalMonth,today=new Date(); today.setHours(0,0,0,0);
+ let first=new Date(y,m,1),n=new Date(y,m+1,0).getDate(),off=(first.getDay()+6)%7;
+ let h=`<div class='pro-cal-nav'><button onclick="changeProMonth(-1)">‹</button><b>${sihaMonths[m]} ${y}</b><button onclick="changeProMonth(1)">›</button></div>
+ <div class='pro-legend'><span>◷ Historique</span><span>⭐ Aujourd’hui</span><span>🟢 Ouvert</span><span>🔴 Complet</span><span>⚫ Bloqué</span><span>🟠 Congé</span></div>
+ <div class='pro-calendar'>`;
+ ['L','M','M','J','V','S','D'].forEach(x=>h+=`<div class='pro-dow'>${x}</div>`);
+ for(let i=0;i<off;i++)h+=`<div></div>`;
+ for(let d=1;d<=n;d++){
+  let dt=new Date(y,m,d); dt.setHours(0,0,0,0);
+  let st=proStateFor(y,m,d),k=proDateKey(y,m,d);
+  let isPast=dt<today,isToday=dt.getTime()===today.getTime();
+  let cls=isPast?'phistory':(isToday?'ptoday':({open:'popen',full:'pfull',blocked:'pblocked',leave:'pleave'}[st]||''));
+  let icon=isPast?'◷':(isToday?'⭐':({open:'🟢',full:'🔴',blocked:'⚫',leave:'🟠'}[st]||''));
+  h+=`<button class='pro-day ${cls}' onclick="openProDay('${k}')"><b>${d}</b><small>${isToday?'Aujourd’hui':icon}</small></button>`;
+ }
+ return h+`</div>`;
+}
+function changeProMonth(delta){
+ let t=new Date(proCalYear,proCalMonth+delta,1);
+ proCalYear=t.getFullYear();proCalMonth=t.getMonth();doctorProPage('agenda');
+}
+function doctorProPage(type){
+ var p=document.getElementById('doctorPro');
+ var back=`<div class='topbar'><button class='back' type='button' onclick="resetDoctorPro()">‹</button>`;
+ if(type==='today') p.innerHTML=back+`<h2>Aujourd’hui</h2></div>
+ <div class='choice' onclick="doctorConsultPage('member')"><b>10:30 · Sara El Mansouri</b><small>Femme · 52 ans · Membre · Suivi oncologique · Cabinet · Confirmé</small></div>
+ <div class='choice' onclick="doctorConsultPage('guest')"><b>11:30 · Youssef Amrani</b><small>Homme · 46 ans · Invité · Contrôle · Cabinet · Confirmé</small></div>`;
+ if(type==='agenda') p.innerHTML=back+`<h2>Mon agenda</h2></div>
+ <div class='profilebox'><b>Disponibilités au cabinet</b><p class='sub'>Touchez une journée pour gérer ses horaires.</p></div>${proMonthHTML()}
+ <button class='btn' onclick="addProAvailability()">+ Ajouter une disponibilité</button>`;
+ if(type==='requests') p.innerHTML=back+`<h2>Demandes</h2></div>
+ <div class='choice' onclick="doctorRequestDetail('cabinet')"><b>Demande exceptionnelle · Cabinet</b><small>Sara El Mansouri · Femme · 52 ans · Membre<br>Demain · Après-midi · Suivi oncologique</small></div>
+ <div class='choice' onclick="doctorRequestDetail('home')"><b>🏠 Demande à domicile</b><small>Youssef Amrani · Homme · 46 ans · Invité<br>Agdal · Aujourd’hui · 18h–20h · Contrôle</small></div>`;
+ if(type==='home') p.innerHTML=back+`<h2>Services à domicile</h2></div><div class='profilebox'><b>Participation</b><p class='sub'>Recevoir les demandes compatibles avec vos disponibilités.</p></div><div class='field'><label>Zones d’intervention</label><input value='Agdal, Hay Riad'></div><button class='btn'>Enregistrer</button>`;
+ if(type==='profile') p.innerHTML=back+`<h2>Profil professionnel</h2></div><div class='field'><label>Nom</label><input value='Dr Narimane Salmi'></div><div class='field'><label>Spécialité</label><input value='Oncologie médicale'></div><div class='field'><label>Cabinet</label><input value='Agdal, Rabat'></div><div class='field'><label>Tarif</label><input value='350 DH'></div><button class='btn'>Enregistrer</button>`;
+ addProNav(type); window.scrollTo(0,0);
+}
+function secretariatPatients(){
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorProPage('profile')">‹</button><h2>Secrétariat</h2></div>
+ <div class='notice'>Le secrétariat peut ajouter des documents administratifs ou médicaux reçus au dossier du cabinet. Chaque ajout est daté et identifié comme « ajouté par le secrétariat ».</div>
+ <div class='field'><label>Rechercher un patient</label><input placeholder='Nom, prénom ou téléphone'></div>
+ <div class='choice' onclick="secretariatPatientRecord('member')"><b>Sara El Mansouri</b><small>Femme · 52 ans · Membre Siha Maroc</small></div>
+ <div class='choice' onclick="secretariatPatientRecord('guest')"><b>Youssef Amrani</b><small>Homme · 46 ans · Invité · dossier cabinet</small></div>`;
+ addProNav('profile');window.scrollTo(0,0);
+}
+function secretariatPatientRecord(kind){
+ var member=kind==='member', name=member?'Sara El Mansouri':'Youssef Amrani',p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="secretariatPatients()">‹</button><h2>Dossier patient</h2></div>
+ <div class='profilebox'><b>${name}</b><p class='sub'>${member?'Femme · 52 ans · Membre Siha Maroc':'Homme · 46 ans · Invité'}</p></div>
+ <div class='field'><label>Type de document</label><select id='secDocType'><option>Compte rendu</option><option>Ordonnance</option><option>Résultat d’analyse</option><option>Compte rendu d’imagerie</option><option>Lettre médicale</option><option>Document administratif</option><option>Autre</option></select></div>
+ <input id='secPdf' type='file' accept='application/pdf' multiple style='display:none' onchange="secretariatAddPdf('${kind}',this)">
+ <button class='btn' onclick="document.getElementById('secPdf').click()">📄 Ajouter / télécharger un PDF</button>
+ <div id='secDocs'>${secretariatDocsHTML(kind)}</div>`;
+ addProNav('profile');window.scrollTo(0,0);
+}
+function secretariatAddPdf(kind,input){
+ var type=(document.getElementById('secDocType')||{}).value||'Document', arr=[];
+ try{arr=JSON.parse(localStorage.getItem('siha_secretariat_docs')||'[]')}catch(e){}
+ Array.from(input.files||[]).forEach(f=>arr.unshift({id:'sec-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),kind:kind,type:type,name:f.name,size:f.size,addedAt:new Date().toLocaleString('fr-FR'),addedBy:'Secrétariat'}));
+ localStorage.setItem('siha_secretariat_docs',JSON.stringify(arr));input.value='';
+ document.getElementById('secDocs').innerHTML=secretariatDocsHTML(kind);
+}
+function secretariatDocsHTML(kind){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_secretariat_docs')||'[]')}catch(e){}
+ var docs=arr.filter(d=>d.kind===kind);
+ return `<div class='card' style='margin-top:14px'><b>Documents du dossier (${docs.length})</b>${docs.length?docs.map(d=>`<div style="padding:12px 0;border-bottom:1px solid #e6eeeb"><b>📄 ${d.type}</b><br><span>${d.name}</span><br><small>${d.addedAt} · ${d.addedBy}</small></div>`).join(''):`<p class='sub'>Aucun PDF ajouté par le secrétariat.</p>`}</div>`;
+}
+function doctorRequestDetail(type){
+ var p=document.getElementById('doctorPro'), home=type==='home';
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorProPage('requests')">‹</button><h2>${home?'Demande à domicile':'Demande exceptionnelle'}</h2></div>
+ <div class='profilebox'><b>${home?'Youssef Amrani':'Sara El Mansouri'}</b><p class='sub'>${home?'Homme · 46 ans · Invité':'Femme · 52 ans · Membre'}</p></div>
+ <div class='card'><b>Motif</b><p class='sub'>${home?'Contrôle':'Suivi oncologique'}</p></div>
+ <div class='card'><b>${home?'Intervention demandée':'Créneau demandé'}</b><p class='sub'>${home?'Aujourd’hui · 18h–20h · Agdal, Rabat':'Demain · Après-midi · Cabinet'}</p></div>
+ <div class='choice'><b>📎 Documents transmis</b><small>${home?'Aucun document':'1 document médical transmis'}</small></div>
+ ${home?`<div class='field'><label>Heure estimée d’arrivée</label><input type='time'></div><div class='field'><label>Tarif proposé (DH)</label><input type='number' placeholder='Ex. 500'></div>`:`<div class='field'><label>Créneau proposé</label><input type='datetime-local'></div>`}
+ <button class='btn' onclick="doctorRequestResult('accept')">✓ Accepter</button>
+ <button class='secondary' onclick="doctorRequestResult('propose')">🕒 Proposer un autre ${home?'horaire':'créneau'}</button>
+ <button class='secondary' onclick="doctorRequestResult('refuse')">Refuser la demande</button>`;
+ addProNav('requests'); window.scrollTo(0,0);
+}
+function doctorRequestResult(action){
+ var txt=action==='accept'?'Demande acceptée — ajoutée à l’agenda.':action==='propose'?'Nouvelle proposition envoyée au patient.':'Demande refusée — classée dans l’historique.';
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorProPage('requests')">‹</button><h2>Demandes</h2></div><div class='successbox'><b>✓ ${txt}</b></div><button class='btn' onclick="doctorProPage('requests')">Retour aux demandes</button>`;
+ addProNav('requests');
+}
+function sihaAgendaAppointments(){
+ var raw=localStorage.getItem('siha_agenda_appointments');
+ if(raw){try{return JSON.parse(raw)}catch(e){}}
+ var today=new Date(), pad=n=>String(n).padStart(2,'0');
+ function key(offset,time){
+   var d=new Date(today);d.setDate(d.getDate()+offset);
+   return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}|${time}`;
+ }
+ var data={};
+ data[key(0,'10:30')]={kind:'member',name:'Sara El Mansouri',first:'Sara',last:'El Mansouri',sex:'Femme',age:'52 ans',phone:'06 12 34 56 78',status:'Membre Siha Maroc',motif:'Suivi oncologique'};
+ data[key(0,'11:30')]={kind:'guest',name:'Youssef Amrani',first:'Youssef',last:'Amrani',sex:'Homme',age:'46 ans',phone:'06 98 76 54 32',status:'Invité',motif:'Contrôle'};
+ localStorage.setItem('siha_agenda_appointments',JSON.stringify(data));return data;
+}
+function sihaAgendaPatient(day,time){return sihaAgendaAppointments()[day+'|'+time]||null}
+function openProDay(k){
+ let p=document.getElementById('doctorPro');
+ let slots=window.proDaySlots[k]||['09:00','09:30','10:30','11:30','14:00','15:30','16:00','17:30'];
+ let appointments=sihaAgendaAppointments();
+ let savedConsults=[];try{savedConsults=JSON.parse(localStorage.getItem('siha_doctor_consultations')||'[]')}catch(e){}
+ let parts=k.split('/'), dayDate=new Date(+parts[2],+parts[1]-1,+parts[0]), now=new Date(); now.setHours(0,0,0,0); dayDate.setHours(0,0,0,0);
+ let historical=dayDate<now, current=dayDate.getTime()===now.getTime();
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorProPage('agenda')">‹</button><h2>${k}${current?' · Aujourd’hui':''}</h2></div>
+ <div class='profilebox'><b>${historical?'Historique du cabinet':current?'Aujourd’hui · Horaires du cabinet':'Horaires du cabinet'}</b><p class='sub'>${historical?'Journée passée conservée dans l’historique. Les rendez-vous et dossiers restent consultables.':'Un rendez-vous affiche directement le nom du patient. Touchez un créneau pour l’ouvrir.'}</p></div>
+ <div class='agenda-list'>${slots.map(t=>appointments[k+'|'+t]?
+ `<button class='agenda-slot occupied' onclick="doctorAgendaPatient('${k}','${t}')"><span class='agenda-time'>${t}</span><span><b>${appointments[k+'|'+t].name}</b><small>${appointments[k+'|'+t].motif} · ${savedConsults.some(c=>c.patient===appointments[k+'|'+t].name && c.time===t && c.day===k)?'✓ Consulté':(historical?'Rendez-vous passé':appointments[k+'|'+t].status)}</small></span><span class='chev'>›</span></button>`:
+ historical?`<div class='agenda-slot free history-empty'><span class='agenda-time'>${t}</span><span><b>Aucun rendez-vous</b><small>Créneau passé</small></span><span></span></div>`:`<button class='agenda-slot free' onclick="doctorAgendaEmpty('${k}','${t}')"><span class='agenda-time'>${t}</span><span><b>Créneau libre</b><small>Ajouter un patient au cabinet</small></span><span class='chev'>＋</span></button>`).join('')}</div>
+ <div class='pro-actions'><button onclick="setProDay('${k}','open')">🟢 Ouvrir</button><button onclick="setProDay('${k}','full')">🔴 Complet</button><button onclick="setProDay('${k}','blocked')">⚫ Bloquer</button><button onclick="setProDay('${k}','leave')">🟠 Congé</button></div>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorFindSavedConsult(x,day,time){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_doctor_consultations')||'[]')}catch(e){}
+ return arr.find(c=>c.patient===x.name && c.day===day && c.time===time)||null;
+}
+function doctorAgendaConsultButton(x,day,time){
+ var c=doctorFindSavedConsult(x,day,time);
+ return c?`<button class='btn' onclick="doctorReadOnlyConsult('${c.id}','${day}','${time}')">✓ Voir la consultation réalisée</button>`
+ :`<button class='btn' onclick="doctorOpenConsultFromAgenda('${x.kind}','${day}','${time}')">🩺 Ouvrir la consultation</button>`;
+}
+function doctorReadOnlyConsult(id,day,time){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_doctor_consultations')||'[]')}catch(e){}
+ var c=arr.find(x=>x.id===id);if(!c)return;
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorAgendaPatient('${day}','${time}')">‹</button><h2>Consultation réalisée</h2></div>
+ <div class='successbox'><b>✓ Consultation validée</b><p class='sub'>${c.validatedAt} · Informations figées</p></div>
+ <div class='card'><p><b>Motif :</b> ${c.motif}</p><p><b>Observations cliniques :</b> ${c.observations}</p><p><b>Conclusion médicale :</b> ${c.conclusion}</p><p><b>Conduite à tenir :</b> ${c.conduct}</p><p><b>Prescription :</b> ${c.prescription}</p><p><b>Analyses :</b> ${c.analyses}</p><p><b>Imagerie :</b> ${c.imagerie}</p><p><b>Orientation :</b> ${c.orientation}</p>
+ <p><b>Documents patient :</b><br>${(c.documents&&c.documents.length)?c.documents.map(d=>'📄 '+d.type+' — '+d.name).join('<br>'):'—'}</p></div>
+ <div class='notice'>Pour corriger ou compléter cette consultation, utilisez Modifier / Ajouter depuis le journal afin de conserver la traçabilité.</div>
+ <button class='secondary' onclick="doctorOpenRecordFromAgenda('${c.kind}','${day}','${time}')">📋 Ouvrir le journal médical</button>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorAgendaConsultationSummary(x,day,time){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_doctor_consultations')||'[]')}catch(e){}
+ var c=arr.find(z=>z.patient===x.name && z.day===day && z.time===time);
+ if(!c)return `<div class='card'><b>Historique avec Dr Narimane Salmi</b><p class='sub'>Aucune consultation validée dans ce test.</p></div>`;
+ return `<div class='card'><b>✓ Consultée</b><p class='sub'>${c.validatedAt}</p>
+ <p><b>Motif :</b> ${c.motif}</p><p><b>Observations :</b> ${c.observations}</p><p><b>Conclusion :</b> ${c.conclusion}</p>
+ <p><b>Conduite à tenir :</b> ${c.conduct}</p><p><b>Prescription :</b> ${c.prescription}</p><p><b>Analyses :</b> ${c.analyses}</p>
+ <p><b>Imagerie :</b> ${c.imagerie}</p><p><b>Orientation :</b> ${c.orientation}</p></div>`;
+}
+function doctorAgendaPatient(day,time){
+ window.sihaPatientOrigin={source:'agenda',day:day,time:time};
+ let x=sihaAgendaPatient(day,time),p=document.getElementById('doctorPro'); if(!x){openProDay(day);return;}
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="openProDay('${day}')">‹</button><h2>${time} · Rendez-vous</h2></div>
+ <div class='profilebox'><b>${x.name}</b><p class='sub'>${x.sex} · ${x.age} · ${x.status}</p></div>
+ <div class='card'><p><b>Nom :</b> ${x.last}</p><p><b>Prénom :</b> ${x.first}</p><p><b>Téléphone :</b> ${x.phone}</p><p><b>Motif :</b> ${x.motif}</p></div>${doctorAgendaConsultationSummary(x,day,time)}
+ <div class='choice' onclick="doctorOpenRecordFromAgenda('${x.kind}','${day}','${time}')"><b>📋 Dossier médical ${x.kind==='member'?'de cette patiente':'de ce patient'}</b><small>Historique relatif au Dr Narimane Salmi</small></div>
+ <div class='choice' onclick="doctorAddDocumentFromPatient('${x.kind}','${day}','${time}')"><b>📎 Ajouter un document au dossier</b><small>PDF · Compte rendu · Ordonnance · Analyses · Imagerie · Autre</small></div>
+ ${x.kind==='member'?`<div class='choice' onclick="doctorOpenGeneralHistoryFromAgenda('${day}','${time}')"><b>📂 Historique général du patient</b><small>Informations de santé Siha provenant des autres professionnels et établissements</small></div>`:''}
+ ${doctorAgendaConsultButton(x,day,time)}
+ <button class='secondary' onclick="doctorRescheduleAppointment('${day}','${time}')">📅 Reprogrammer le rendez-vous</button>
+ <div id='rescheduleStatus'></div>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorAddDocumentFromPatient(kind,day,time){
+ var x=sihaAgendaPatient(day,time); if(!x){openProDay(day);return}
+ window.sihaDocPatientOrigin={kind:kind,day:day,time:time,name:x.name};
+ var p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorAgendaPatient('${day}','${time}')">‹</button><h2>Ajouter un document</h2></div>
+ <div class='profilebox'><b>${x.name}</b><p class='sub'>Ajout au dossier médical du cabinet</p></div>
+ <div class='field'><label>Ajouté par</label><select id='patientDocAuthor'><option>Dr Narimane Salmi</option><option>Secrétariat</option></select></div>
+ <div class='field'><label>Type de document</label><select id='patientDocType'><option>Compte rendu</option><option>Ordonnance</option><option>Résultat d’analyse</option><option>Compte rendu d’imagerie</option><option>Lettre médicale</option><option>Autre</option></select></div>
+ <input id='patientDocPdf' type='file' accept='application/pdf,image/*' multiple style='display:none' onchange="doctorSavePatientDocuments(this)">
+ <button class='btn' onclick="document.getElementById('patientDocPdf').click()">📄 Choisir / scanner un document</button>
+ <div class='notice'>Chaque ajout est daté et tracé dans le journal médical.</div><div id='patientDocResult'></div>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+async function doctorSavePatientDocuments(input){
+ var o=window.sihaDocPatientOrigin||{},type=document.getElementById('patientDocType').value,author=document.getElementById('patientDocAuthor').value;
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_patient_documents')||'[]')}catch(e){}
+ for(const f of Array.from(input.files||[])){
+   var dataUrl=await new Promise(resolve=>{var r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>resolve('');r.readAsDataURL(f)});
+   arr.unshift({id:'pdoc-'+Date.now()+'-'+Math.random().toString(36).slice(2,6),kind:o.kind,name:o.name,type:type,fileName:f.name||'Document',mime:f.type||'',dataUrl:dataUrl,addedAt:new Date().toLocaleString('fr-FR'),addedBy:author});
+ }
+ try{localStorage.setItem('siha_patient_documents',JSON.stringify(arr))}catch(e){alert("Le document est trop volumineux pour ce prototype local. Dans la version serveur il sera stocké dans Supabase.");}
+ input.value='';
+ document.getElementById('patientDocResult').innerHTML=`<div class='successbox'><b>✓ Document ajouté au dossier</b><p class='sub'>Vous pouvez maintenant l’ouvrir et le revoir depuis le dossier médical.</p></div><button class='secondary' onclick="doctorOpenRecordFromAgenda('${o.kind}','${o.day}','${o.time}')">📋 Voir le dossier médical</button>`;
+}
+function doctorPreviewPatientDoc(id,kind){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_patient_documents')||'[]')}catch(e){}
+ var d=arr.find(x=>x.id===id);if(!d||!d.dataUrl){alert("Aperçu indisponible pour cet ancien document de test.");return}
+ var isImg=(d.mime||'').startsWith('image/');
+ var content=isImg?`<img src="${d.dataUrl}" alt="${d.fileName}" style="width:100%;height:auto;border-radius:14px;display:block">`
+ :`<iframe src="${d.dataUrl}" style="width:100%;height:65vh;border:0;border-radius:14px;background:#fff"></iframe>`;
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorMedicalDocuments('${kind}')">‹</button><h2>${d.type}</h2></div>
+ <div class='card'><b>${d.fileName}</b><p class='sub'>${d.addedAt} · Ajouté par ${d.addedBy}</p></div>${content}
+ <a class='btn' style='display:block;text-align:center;text-decoration:none;margin-top:14px' href="${d.dataUrl}" target="_blank">↗️ Ouvrir en plein écran</a>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorPatientDocsJournal(kind){
+ var arr=[];try{arr=JSON.parse(localStorage.getItem('siha_patient_documents')||'[]')}catch(e){}
+ var patient=kind==='member'?'Sara El Mansouri':'Youssef Amrani';
+ return arr.filter(d=>d.kind===kind&&d.name===patient).map(d=>`<div class='feed-item'><div class='feed-date'>${d.addedAt}</div><div class='feed-card'><b>📄 ${d.type}</b><p>${d.fileName}</p><p class='sub'>Ajouté par ${d.addedBy}</p>${d.dataUrl?`<button class='mini-btn' onclick="doctorPreviewPatientDoc('${d.id}','${kind}')">👁️ Voir le document</button>`:`<p class='sub'>Ancien document de test : aperçu non enregistré.</p>`}</div></div>`).join('');
+}
+function doctorOpenGeneralHistoryFromAgenda(day,time){
+ window.sihaGeneralHistoryOrigin={source:'agenda',day:day,time:time};
+ doctorGeneralHistory();
+}
+function doctorGeneralHistoryBack(){
+ var o=window.sihaGeneralHistoryOrigin;
+ if(o&&o.source==='agenda'){
+   var d=o.day,t=o.time;
+   window.sihaGeneralHistoryOrigin=null;
+   doctorAgendaPatient(d,t);
+   return;
+ }
+ doctorConsultPage('member');
+}
+function doctorOpenRecordFromAgenda(kind,day,time){
+ window.sihaRecordOrigin={source:'agenda',day:day,time:time,kind:kind};
+ if(kind==='member') doctorOwnHistory(); else doctorGuestHistory();
+}
+function doctorRecordBack(kind){
+ var o=window.sihaRecordOrigin;
+ if(o&&o.source==='agenda'){
+   var d=o.day,t=o.time; window.sihaRecordOrigin=null;
+   doctorAgendaPatient(d,t); return;
+ }
+ doctorConsultPage(kind||'member');
+}
+function doctorOpenConsultFromAgenda(kind,day,time){
+ window.sihaConsultOrigin={source:'agenda',day:day,time:time,kind:kind};
+ localStorage.setItem('siha_consult_origin',JSON.stringify(window.sihaConsultOrigin));
+ doctorConsultPage(kind);
+}
+function doctorConsultBack(kind){
+ var o=window.sihaConsultOrigin;
+ if(o&&o.source==='agenda'){
+   var day=o.day,time=o.time;
+   window.sihaConsultOrigin=null;
+   doctorAgendaPatient(day,time);
+ }else{
+   doctorProPage('today');
+ }
+}
+function doctorRescheduleAppointment(day,time){
+ let x=sihaAgendaPatient(day,time),p=document.getElementById('doctorPro'); if(!x){openProDay(day);return;}
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="doctorAgendaPatient('${day}','${time}')">‹</button><h2>Reprogrammer</h2></div>
+ <div class='profilebox'><b>${x.name}</b><p class='sub'>Rendez-vous actuel : ${day} à ${time}</p></div>
+ <div class='notice'>Le rendez-vous actuel reste confirmé tant que le patient n’a pas accepté la nouvelle proposition.</div>
+ <div class='field'><label>Nouvelle date proposée</label><input id='newApptDate' type='date'></div>
+ <div class='field'><label>Nouvel horaire proposé</label><input id='newApptTime' type='time'></div>
+ <div class='field'><label>Motif interne (facultatif)</label><textarea id='rescheduleReason' rows='2' placeholder='Ex. empêchement du médecin'></textarea></div>
+ <button class='btn' onclick="doctorSendReschedule('${day}','${time}')">Envoyer la proposition au patient</button>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorSendReschedule(day,time){
+ let d=document.getElementById('newApptDate').value,t=document.getElementById('newApptTime').value;
+ if(!d||!t){alert('Choisissez la nouvelle date et le nouvel horaire.');return}
+ let reason=document.getElementById('rescheduleReason').value||'Reprogrammation proposée par le médecin';
+ let x=sihaAgendaPatients()[time];
+ let proposal={patient:x.name,oldDay:day,oldTime:time,newDay:d,newTime:t,reason:reason,status:'En attente de validation patient',created:new Date().toLocaleString('fr-FR')};
+ localStorage.setItem('siha_reschedule_proposal',JSON.stringify(proposal));
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorAgendaPatient('${day}','${time}')">‹</button><h2>Proposition envoyée</h2></div>
+ <div class='successbox'><b>✓ Patient notifié</b><p class='sub'>${x.name}</p></div>
+ <div class='card'><p><b>Rendez-vous actuel :</b> ${day} à ${time}</p><p><b>Nouveau rendez-vous proposé :</b> ${d} à ${t}</p><p><b>Statut :</b> En attente de validation patient</p></div>
+ <div class='notice'>Le rendez-vous actuel n’est pas libéré. Il le sera uniquement si le patient accepte la proposition.</div>
+ <button class='btn' onclick="doctorRescheduleDemoResponse('${day}','${time}','accept')">Démo : le patient accepte</button>
+ <button class='secondary' onclick="doctorRescheduleDemoResponse('${day}','${time}','refuse')">Démo : le patient refuse</button>`;
+ addProNav('agenda');
+}
+function doctorRescheduleDemoResponse(day,time,response){
+ let q;try{q=JSON.parse(localStorage.getItem('siha_reschedule_proposal')||'null')}catch(e){}
+ if(!q)return;
+ q.status=response==='accept'?'Accepté par le patient':'Refusé par le patient';
+ q.responded=new Date().toLocaleString('fr-FR');
+ localStorage.setItem('siha_reschedule_proposal',JSON.stringify(q));
+ let msg=response==='accept'?'Le nouveau rendez-vous est confirmé. L’ancien créneau peut être libéré.':'Le rendez-vous initial reste confirmé. Une autre proposition peut être envoyée.';
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="doctorAgendaPatient('${day}','${time}')">‹</button><h2>Reprogrammation</h2></div>
+ <div class='successbox'><b>${response==='accept'?'✓':'ℹ'} ${q.status}</b><p class='sub'>${msg}</p></div>
+ <div class='card'><b>Historique</b><p class='sub'>Proposition : ${q.created}<br>Réponse patient : ${q.responded}<br>${q.oldDay} ${q.oldTime} → ${q.newDay} ${q.newTime}</p></div>
+ <button class='btn' onclick="doctorProPage('agenda')">Retour à l’agenda</button>`;
+ addProNav('agenda');
+}
+function doctorAgendaEmpty(day,time){
+ let p=document.getElementById('doctorPro');
+ p.innerHTML=`<div class='topbar'><button class='back' onclick="openProDay('${day}')">‹</button><h2>${time} · Patient au cabinet</h2></div>
+ <div class='notice'>Pour un patient venu directement au cabinet sans passer par l’application. Un dossier médical avec ce médecin sera créé.</div>
+ <div class='field'><label>Nom</label><input id='walkLast' placeholder='Nom'></div>
+ <div class='field'><label>Prénom</label><input id='walkFirst' placeholder='Prénom'></div>
+ <div class='field'><label>Sexe</label><select id='walkSex'><option>Femme</option><option>Homme</option></select></div>
+ <div class='field'><label>Âge</label><input id='walkAge' type='number' placeholder='Âge'></div>
+ <div class='field'><label>Téléphone</label><input id='walkPhone' type='tel' placeholder='06...'></div>
+ <div class='field'><label>Motif</label><textarea id='walkMotif' rows='2' placeholder='Motif de consultation'></textarea></div>
+ <button class='btn' onclick="doctorCreateWalkIn('${day}','${time}')">Créer le dossier et le rendez-vous</button>`;
+ addProNav('agenda');window.scrollTo(0,0);
+}
+function doctorCreateWalkIn(day,time){
+ let first=document.getElementById('walkFirst').value.trim(),last=document.getElementById('walkLast').value.trim();
+ if(!first||!last){alert('Nom et prénom sont obligatoires.');return}
+ let sex=document.getElementById('walkSex').value,age=document.getElementById('walkAge').value||'—',phone=document.getElementById('walkPhone').value||'—',motif=document.getElementById('walkMotif').value||'Consultation';
+ sihaAgendaPatients()[time]={kind:'guest',name:first+' '+last,first,last,sex,age:age==='—'?'—':age+' ans',phone,status:'Patient cabinet',motif};
+ document.getElementById('doctorPro').innerHTML=`<div class='topbar'><button class='back' onclick="openProDay('${day}')">‹</button><h2>Patient ajouté</h2></div>
+ <div class='successbox'><b>✓ Dossier et rendez-vous créés</b><p class='sub'>${first} ${last} · ${time}</p></div>
+ <button class='btn' onclick="doctorOpenConsultFromAgenda('guest','${day}','${time}')">🩺 Ouvrir la consultation</button>
+ <div class='choice' onclick="alert('Prototype : l’activation du compte nécessitera la validation du numéro et l’accord du patient.')"><b>👤 Proposer un compte Siha Maroc</b><small>Avec l’accord du patient · vérification du téléphone</small></div>
+ <button class='secondary' onclick="openProDay('${day}')">Retour à l’agenda</button>`;
+ addProNav('agenda');
+}
+function setProDay(k,state){window.proDayState[k]=state;doctorProPage('agenda')}
+function addProAvailability(){
+ let d=prompt("Date (JJ/MM/AAAA)","23/09/2026"); if(!d)return;
+ window.proDayState[d]='open';openProDay(d);
+}
+function addProNav(active){
+ let p=document.getElementById('doctorPro');
+ let nav=document.createElement('div');nav.className='pro-bottom';
+ nav.innerHTML=`<button onclick="doctorProPage('today')" class="${active==='today'?'on':''}">📅<small>Aujourd’hui</small></button>
+ <button onclick="doctorProPage('agenda')" class="${active==='agenda'?'on':''}">🗓️<small>Agenda</small></button>
+ <button onclick="doctorProPage('requests')" class="${active==='requests'?'on':''}">📨<small>Demandes</small></button>
+ <button onclick="doctorProPage('profile')" class="${active==='profile'?'on':''}">👤<small>Profil</small></button>`;
+ p.appendChild(nav);
+ document.body.classList.add('pro-mode-active');
+}
+document.addEventListener('click',function(e){if(e.target.closest && e.target.closest('.nav'))document.body.classList.remove('pro-mode-active')});
+</script>
+<script>document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('pro-mode-active');var p=document.getElementById('doctorPro');if(p){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));p.classList.add('active');}});</script>
+
+<script id="siha-shared-patient-bridge">
+/*
+ Prototype bridge between index.html and medecin-test.html on the same GitHub Pages origin.
+ Expected future/shared key: siha_appointments
+ [{id,doctor,name,sex,age,status,time,motif,location,state}]
+ Supabase will replace this localStorage bridge in production.
+*/
+function sihaReadSharedAppointments(){
+ try{
+   const raw=localStorage.getItem('siha_appointments');
+   const arr=raw?JSON.parse(raw):[];
+   return Array.isArray(arr)?arr:[];
+ }catch(e){ return []; }
+}
+function sihaDoctorTodayShared(){
+ return sihaReadSharedAppointments().filter(a=>{
+   const d=(a.doctor||'').toLowerCase();
+   return !d || d.includes('narimane') || d.includes('salmi');
+ });
+}
+</script>
+<script>
+if(!localStorage.getItem('siha_v32_migrated')){
+ localStorage.removeItem('siha_agenda_appointments');
+ localStorage.removeItem('siha_doctor_consultations');
+ localStorage.removeItem('siha_last_consultation');
+ localStorage.removeItem('siha_consult_origin');
+ localStorage.setItem('siha_v32_migrated','1');
+}
+</script>
+</body></html>
